@@ -1,0 +1,3 @@
+{
+    "ignore": ["wb_products.json", "host_cache.json", "bot.log"]
+  }
