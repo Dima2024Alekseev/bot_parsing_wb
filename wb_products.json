@@ -3,7 +3,7 @@
     "4219394": {
       "name": "Креатин моногидрат Creatine Monohydrate, без вкуса 200 гр.",
       "brand": "Prime Kraft",
-      "current_price": 509,
+      "current_price": 529,
       "rating": 0,
       "imageUrl": "https://basket-01.wbbasket.ru/vol42/part4219/4219394/images/big/1.webp",
       "added_date": "2025-08-08 16:26:18",
@@ -11,20 +11,24 @@
         {
           "date": "2025-08-08 16:26:18",
           "price": 509
+        },
+        {
+          "date": "2025-08-09 06:00:25",
+          "price": 529
         }
       ]
     },
-    "312643606": {
-      "name": "Рулонная штора День-ночь 62х140",
-      "brand": "WiCor",
-      "current_price": 825,
+    "400654457": {
+      "name": "Сабо Crocs мужские серые летние",
+      "brand": "CROCS",
+      "current_price": 2014,
       "rating": 0,
-      "imageUrl": "https://basket-19.wbbasket.ru/vol3126/part312643/312643606/images/big/1.webp",
-      "added_date": "2025-08-08 15:44:07",
+      "imageUrl": "https://basket-23.wbbasket.ru/vol4006/part400654/400654457/images/big/1.webp",
+      "added_date": "2025-08-09 06:28:36",
       "history": [
         {
-          "date": "2025-08-08 15:44:07",
-          "price": 825
+          "date": "2025-08-09 06:28:36",
+          "price": 2014
         }
       ]
     }
