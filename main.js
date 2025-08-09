@@ -7,6 +7,9 @@ const { DEFAULT_NOTIFICATION_INTERVAL } = require('./src/config/config');
 const { loadJson } = require('./src/utils/fileUtils');
 const { connectToMongoDB, closeMongoDB } = require('./src/utils/db');
 
+// Объект для хранения задач планировщика
+const scheduledJobs = {};
+
 // Инициализация MongoDB
 connectToMongoDB().catch(error => {
     logger.error(`Не удалось подключиться к MongoDB: ${error.message}`);
@@ -31,10 +34,17 @@ async function schedulePriceChecks() {
         const cronExpression = userData.notificationInterval || DEFAULT_NOTIFICATION_INTERVAL;
         logger.info(`Запуск планировщика для chat_id: ${chatId} с интервалом: ${cronExpression}`);
 
+        // Отменяем существующую задачу, если она есть
+        if (scheduledJobs[chatId]) {
+            scheduledJobs[chatId].cancel();
+            logger.info(`Отменена предыдущая задача для chat_id: ${chatId}`);
+        }
+
         try {
             // Проверяем, доступен ли чат
             await bot.getChat(chatId);
-            schedule.scheduleJob(cronExpression, async () => {
+            // Создаем новую задачу
+            scheduledJobs[chatId] = schedule.scheduleJob(cronExpression, async () => {
                 logger.info(`Запуск автоматической проверки цен для chat_id: ${chatId}`);
                 try {
                     await checkPrices(bot, chatId, true);
@@ -57,14 +67,25 @@ schedulePriceChecks().catch(error => {
 // Обработка завершения работы
 process.on('SIGINT', async () => {
     logger.info('Завершение работы бота...');
+    for (const chatId in scheduledJobs) {
+        scheduledJobs[chatId].cancel();
+        logger.info(`Остановлена задача для chat_id: ${chatId}`);
+    }
     await closeMongoDB();
     process.exit(0);
 });
 
 process.on('SIGTERM', async () => {
     logger.info('Завершение работы бота...');
+    for (const chatId in scheduledJobs) {
+        scheduledJobs[chatId].cancel();
+        logger.info(`Остановлена задача для chat_id: ${chatId}`);
+    }
     await closeMongoDB();
     process.exit(0);
 });
 
 logger.info('Бот запущен');
+
+// Экспортируем функцию для использования в callbackHandlers.js
+module.exports = { schedulePriceChecks };

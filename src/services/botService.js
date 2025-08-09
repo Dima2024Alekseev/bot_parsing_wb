@@ -4,6 +4,7 @@ const { getWbProductInfo } = require('./wbService');
 const logger = require('../utils/logger');
 const { JSON_FILE } = require('../config/config');
 const moment = require('moment-timezone');
+const { schedulePriceChecks } = require('../../main'); // Импортируем функцию
 
 /**
  * Добавляет товар в список отслеживания.
@@ -77,6 +78,8 @@ async function addProduct(bot, chatId, article) {
 `;
         await sendMessageWithPhoto(bot, chatId, caption, productInfo.imageUrl);
         await showMainMenu(bot, chatId);
+        // Перезапускаем планировщик, так как добавлен новый товар
+        await schedulePriceChecks();
     } catch (error) {
         clearTimeout(waitTimeout);
         logger.error(`Ошибка при добавлении товара ${article}: ${error.message}`);
@@ -105,7 +108,9 @@ async function removeProduct(bot, chatId, article) {
     const productName = data.users[chatId].products[article].name;
     delete data.users[chatId].products[article];
     if (!Object.keys(data.users[chatId].products).length) {
-        delete data.users[chatId]; // Удаляем пользователя, если у него больше нет товаров
+        delete data.users[chatId];
+        // Перезапускаем планировщик, так как у пользователя больше нет товаров
+        await schedulePriceChecks();
     }
     await saveJson(JSON_FILE, data);
     await bot.sendMessage(chatId, `🗑 Товар удалён: ${productName} (арт. ${article})`, { parse_mode: 'HTML' });
@@ -121,34 +126,31 @@ async function removeProduct(bot, chatId, article) {
 async function listProducts(bot, chatId, page = 1) {
     const data = await loadJson(JSON_FILE);
     if (!data.users[chatId] || !Object.keys(data.users[chatId].products).length) {
-        logger.info(`Список товаров пуст, chat_id: ${chatId}`);
+        logger.info(`Нет товаров для chat_id: ${chatId}`);
         await bot.sendMessage(chatId, '📭 Список отслеживаемых товаров пуст.', { parse_mode: 'HTML' });
         await showMainMenu(bot, chatId);
         return;
     }
 
     const products = Object.entries(data.users[chatId].products);
-    const pageSize = 1; // Один товар на страницу
-    const totalPages = Math.ceil(products.length / pageSize);
-    const currentPage = Math.max(1, Math.min(page, totalPages)); // Ограничиваем страницу допустимыми значениями
-    const startIndex = (currentPage - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    const paginatedProducts = products.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(products.length);
+    const productsPerPage = 1;
+    const startIndex = (page - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+    const currentProducts = products.slice(startIndex, endIndex);
 
-    logger.info(`Отправка списка товаров, chat_id: ${chatId}, страница: ${currentPage}/${totalPages}`);
-    await showPaginatedProducts(bot, chatId, paginatedProducts, currentPage, totalPages);
+    await showPaginatedProducts(bot, chatId, currentProducts, page, totalPages);
 }
 
 /**
- * Проверяет цены всех отслеживаемых товаров.
+ * Проверяет цены всех отслеживаемых товаров пользователя.
  * @param {Object} bot - Экземпляр Telegram-бота.
  * @param {number} chatId - ID чата.
- * @param {boolean} [isAuto=false] - Автоматическая проверка.
+ * @param {boolean} isAuto - Флаг автоматической проверки.
  */
 async function checkPrices(bot, chatId, isAuto = false) {
     const data = await loadJson(JSON_FILE);
     if (!data.users[chatId] || !Object.keys(data.users[chatId].products).length) {
-        logger.info(`Нет товаров для проверки, chat_id: ${chatId}`);
         if (!isAuto) {
             try {
                 await bot.sendMessage(chatId, 'ℹ️ Нет товаров для проверки.', { parse_mode: 'HTML' });

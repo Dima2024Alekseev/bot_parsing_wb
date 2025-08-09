@@ -4,6 +4,7 @@ const { bot, userStates } = require('./messageHandlers');
 const logger = require('../utils/logger');
 const { loadJson, saveJson } = require('../utils/fileUtils');
 const { JSON_FILE } = require('../config/config');
+const { schedulePriceChecks } = require('../../main'); // Импортируем функцию
 
 /**
  * Инициализирует обработчики callback-запросов.
@@ -67,6 +68,8 @@ function setupCallbackHandlers() {
                 await saveJson(JSON_FILE, data);
                 await bot.sendMessage(chatId, `⏰ Интервал уведомлений установлен: каждые ${intervalMinutes} минут`, { parse_mode: 'HTML' });
                 await showMainMenu(bot, chatId);
+                // Перезапускаем планировщик для обновления задач
+                await schedulePriceChecks();
             }
         } else if (callbackData === 'main_menu') {
             await showMainMenu(bot, chatId);
