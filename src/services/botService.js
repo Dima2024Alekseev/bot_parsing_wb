@@ -1,11 +1,13 @@
-// botService.js
 const { loadJson, saveJson } = require('../utils/fileUtils');
 const { showMainMenu, sendMessageWithPhoto, showPaginatedProducts } = require('../utils/telegramUtils');
 const { getWbProductInfo } = require('./wbService');
 const logger = require('../utils/logger');
 const { JSON_FILE } = require('../config/config');
 const moment = require('moment-timezone');
-const { schedulePriceChecks } = require('../utils/scheduler'); // Обновлён импорт
+const { schedulePriceChecks } = require('../utils/scheduler');
+
+// Объект для хранения времени последней команды для защиты от спама
+const lastCommandTime = {};
 
 /**
  * Добавляет товар в список отслеживания.
@@ -14,8 +16,33 @@ const { schedulePriceChecks } = require('../utils/scheduler'); // Обновлё
  * @param {string} article - Артикул товара.
  */
 async function addProduct(bot, chatId, article) {
+    // Проверка формата артикула (7–9 цифр)
+    if (!/^\d{7,9}$/.test(article)) {
+        logger.info(`Некорректный артикул ${article} для chat_id: ${chatId}`);
+        await bot.sendMessage(chatId, 'ℹ️ Артикул должен содержать от 7 до 9 цифр.', { parse_mode: 'HTML' });
+        await showMainMenu(bot, chatId);
+        return;
+    }
+
+    // Защита от спама
+    const now = Date.now();
+    if (lastCommandTime[chatId]?.add && now - lastCommandTime[chatId].add < 60 * 1000) {
+        logger.info(`Спам-команда /add от chat_id: ${chatId}`);
+        await bot.sendMessage(chatId, '⏳ Пожалуйста, подождите минуту перед добавлением нового товара.', { parse_mode: 'HTML' });
+        return;
+    }
+    lastCommandTime[chatId] = { ...lastCommandTime[chatId], add: now };
+
     const data = await loadJson(JSON_FILE);
     data.users[chatId] = data.users[chatId] || { products: {}, notificationInterval: null };
+
+    // Проверка лимита товаров (максимум 50)
+    if (Object.keys(data.users[chatId].products).length >= 50) {
+        logger.info(`Достигнут лимит товаров для chat_id: ${chatId}`);
+        await bot.sendMessage(chatId, '🚫 Достигнут лимит в 50 товаров. Удалите некоторые товары, чтобы добавить новые.', { parse_mode: 'HTML' });
+        await showMainMenu(bot, chatId);
+        return;
+    }
 
     if (data.users[chatId].products[article]) {
         logger.info(`Товар ${article} уже отслеживается, chat_id: ${chatId}`);
@@ -25,7 +52,7 @@ async function addProduct(bot, chatId, article) {
     }
 
     const waitTimeout = setTimeout(async () => {
-        logger.info(`Отправка сообщения ожидания для ${article}`);
+        logger.info(`Отправка сообщения ожидания для ${article}, chat_id: ${chatId}`);
         await bot.sendMessage(chatId, '⏳ Пожалуйста, подождите, идёт обработка...', { parse_mode: 'HTML' });
     }, 5000);
 
@@ -34,7 +61,7 @@ async function addProduct(bot, chatId, article) {
         clearTimeout(waitTimeout);
 
         if (!productInfo.success) {
-            logger.warn(`Не удалось добавить товар ${article}: ${productInfo.message}`);
+            logger.warn(`Не удалось добавить товар ${article}: ${productInfo.message}, chat_id: ${chatId}`);
             const errorMsg = `
 ❌ Не удалось получить данные о товаре с артикулом ${article}.
 
@@ -52,7 +79,8 @@ async function addProduct(bot, chatId, article) {
             return;
         }
 
-        const currentTime = moment().tz('Asia/Bangkok').format('YYYY-MM-DD HH:mm:ss'); // GMT+7
+        // Добавление предупреждений о низком рейтинге или отсутствии товара
+        const currentTime = moment().tz('Asia/Bangkok').format('YYYY-MM-DD HH:mm:ss');
         data.users[chatId].products[article] = {
             name: productInfo.name,
             brand: productInfo.brand,
@@ -64,7 +92,7 @@ async function addProduct(bot, chatId, article) {
         };
         await saveJson(JSON_FILE, data);
 
-        const caption = `
+        let caption = `
 ✅ <b>Товар добавлен:</b>
 
 🏷️ Название: ${productInfo.name}
@@ -77,13 +105,25 @@ async function addProduct(bot, chatId, article) {
 
 🔗 <a href="https://www.wildberries.ru/catalog/${article}/detail.aspx">Ссылка</a>
 `;
+        if (productInfo.rating < 3) {
+            caption += '\n⚠️ Товар имеет низкий рейтинг!';
+        }
+        if (productInfo.message === 'Товар отсутствует на складе') {
+            caption += '\n⚠️ Товар отсутствует на складе!';
+        }
+
         await sendMessageWithPhoto(bot, chatId, caption, productInfo.imageUrl);
         await showMainMenu(bot, chatId);
-        // Перезапускаем планировщик, так как добавлен новый товар
-        await schedulePriceChecks();
+        try {
+            await schedulePriceChecks(bot, checkPrices);
+            logger.info(`Планировщик перезапущен после добавления товара ${article} для chat_id: ${chatId}`);
+        } catch (error) {
+            logger.error(`Ошибка при перезапуске планировщика после добавления товара ${article} для chat_id: ${chatId}: ${error.message}`);
+        }
+        logger.info(`Товар ${article} успешно добавлен для chat_id: ${chatId}`);
     } catch (error) {
         clearTimeout(waitTimeout);
-        logger.error(`Ошибка при добавлении товара ${article}: ${error.message}`);
+        logger.error(`Ошибка при добавлении товара ${article} для chat_id: ${chatId}: ${error.message}`);
         await bot.sendMessage(chatId, `❌ Произошла ошибка при добавлении товара ${article}. Попробуйте позже.`, {
             parse_mode: 'HTML',
         });
@@ -98,6 +138,15 @@ async function addProduct(bot, chatId, article) {
  * @param {string} article - Артикул товара.
  */
 async function removeProduct(bot, chatId, article) {
+    // Защита от спама
+    const now = Date.now();
+    if (lastCommandTime[chatId]?.remove && now - lastCommandTime[chatId].remove < 60 * 1000) {
+        logger.info(`Спам-команда /remove от chat_id: ${chatId}`);
+        await bot.sendMessage(chatId, '⏳ Пожалуйста, подождите минуту перед удалением следующего товара.', { parse_mode: 'HTML' });
+        return;
+    }
+    lastCommandTime[chatId] = { ...lastCommandTime[chatId], remove: now };
+
     const data = await loadJson(JSON_FILE);
     if (!data.users[chatId] || !data.users[chatId].products[article]) {
         logger.info(`Товар ${article} не найден, chat_id: ${chatId}`);
@@ -110,12 +159,17 @@ async function removeProduct(bot, chatId, article) {
     delete data.users[chatId].products[article];
     if (!Object.keys(data.users[chatId].products).length) {
         delete data.users[chatId];
-        // Перезапускаем планировщик, так как у пользователя больше нет товаров
-        await schedulePriceChecks();
+        try {
+            await schedulePriceChecks(bot, checkPrices);
+            logger.info(`Планировщик перезапущен после удаления всех товаров для chat_id: ${chatId}`);
+        } catch (error) {
+            logger.error(`Ошибка при перезапуске планировщика после удаления всех товаров для chat_id: ${chatId}: ${error.message}`);
+        }
     }
     await saveJson(JSON_FILE, data);
-    await bot.sendMessage(chatId, `🗑 Товар удалён: ${productName} (арт. ${article})`, { parse_mode: 'HTML' });
+    await bot.sendMessage(chatId, `🗑️ Товар удалён: ${productName} (арт. ${article})`, { parse_mode: 'HTML' });
     await showMainMenu(bot, chatId);
+    logger.info(`Товар ${article} успешно удалён для chat_id: ${chatId}`);
 }
 
 /**
@@ -125,6 +179,15 @@ async function removeProduct(bot, chatId, article) {
  * @param {number} [page=1] - Номер текущей страницы.
  */
 async function listProducts(bot, chatId, page = 1) {
+    // Защита от спама
+    const now = Date.now();
+    if (lastCommandTime[chatId]?.list && now - lastCommandTime[chatId].list < 60 * 1000) {
+        logger.info(`Спам-команда /list от chat_id: ${chatId}`);
+        await bot.sendMessage(chatId, '⏳ Пожалуйста, подождите минуту перед просмотром списка товаров.', { parse_mode: 'HTML' });
+        return;
+    }
+    lastCommandTime[chatId] = { ...lastCommandTime[chatId], list: now };
+
     const data = await loadJson(JSON_FILE);
     if (!data.users[chatId] || !Object.keys(data.users[chatId].products).length) {
         logger.info(`Нет товаров для chat_id: ${chatId}`);
@@ -141,6 +204,7 @@ async function listProducts(bot, chatId, page = 1) {
     const currentProducts = products.slice(startIndex, endIndex);
 
     await showPaginatedProducts(bot, chatId, currentProducts, page, totalPages);
+    logger.info(`Список товаров показан для chat_id: ${chatId}, страница: ${page}`);
 }
 
 /**
@@ -150,12 +214,22 @@ async function listProducts(bot, chatId, page = 1) {
  * @param {boolean} isAuto - Флаг автоматической проверки.
  */
 async function checkPrices(bot, chatId, isAuto = false) {
+    // Защита от спама
+    const now = Date.now();
+    if (lastCommandTime[chatId]?.check && now - lastCommandTime[chatId].check < 60 * 1000) {
+        logger.info(`Спам-команда /check от chat_id: ${chatId}`);
+        await bot.sendMessage(chatId, '⏳ Пожалуйста, подождите минуту перед следующей проверкой цен.', { parse_mode: 'HTML' });
+        return;
+    }
+    lastCommandTime[chatId] = { ...lastCommandTime[chatId], check: now };
+
     const data = await loadJson(JSON_FILE);
     if (!data.users[chatId] || !Object.keys(data.users[chatId].products).length) {
         if (!isAuto) {
             try {
                 await bot.sendMessage(chatId, 'ℹ️ Нет товаров для проверки.', { parse_mode: 'HTML' });
                 await showMainMenu(bot, chatId);
+                logger.info(`Нет товаров для проверки для chat_id: ${chatId}`);
             } catch (error) {
                 logger.error(`Не удалось отправить сообщение о пустом списке товаров для chat_id: ${chatId}: ${error.message}`);
             }
@@ -166,6 +240,7 @@ async function checkPrices(bot, chatId, isAuto = false) {
     if (!isAuto) {
         try {
             await bot.sendMessage(chatId, '🔄 Начинаю проверку цен...', { parse_mode: 'HTML' });
+            logger.info(`Начало проверки цен для chat_id: ${chatId}`);
         } catch (error) {
             logger.error(`Не удалось отправить сообщение о начале проверки цен для chat_id: ${chatId}: ${error.message}`);
             return;
@@ -197,7 +272,7 @@ async function checkPrices(bot, chatId, isAuto = false) {
             const newPrice = productInfo.price;
 
             if (newPrice !== oldPrice) {
-                const currentTime = moment().tz('Asia/Bangkok').format('YYYY-MM-DD HH:mm:ss'); // GMT+7
+                const currentTime = moment().tz('Asia/Bangkok').format('YYYY-MM-DD HH:mm:ss');
                 data.users[chatId].products[article].current_price = newPrice;
                 data.users[chatId].products[article].imageUrl = productInfo.imageUrl;
                 data.users[chatId].products[article].history.push({
@@ -251,7 +326,8 @@ async function checkPrices(bot, chatId, isAuto = false) {
         for (const change of changes) {
             try {
                 await sendMessageWithPhoto(bot, chatId, change.caption, change.imageUrl);
-                await new Promise(resolve => setTimeout(resolve, 300)); // Задержка 300 мс
+                await new Promise(resolve => setTimeout(resolve, 300));
+                logger.info(`Сообщение об изменении цены отправлено для chat_id: ${chatId}, артикул: ${change.caption.match(/Артикул: <code>(\d+)<\/code>/)?.[1]}`);
             } catch (error) {
                 logger.error(`Не удалось отправить сообщение для chat_id: ${chatId}: ${error.message}`);
             }
@@ -259,12 +335,14 @@ async function checkPrices(bot, chatId, isAuto = false) {
         if (!isAuto && updated > 0) {
             try {
                 await bot.sendMessage(chatId, `📊 Обновлено ${updated} цен`, { parse_mode: 'HTML' });
+                logger.info(`Отправлено сообщение об обновлении ${updated} цен для chat_id: ${chatId}`);
             } catch (error) {
                 logger.error(`Не удалось отправить сообщение об обновлении цен для chat_id: ${chatId}: ${error.message}`);
             }
         } else if (!isAuto) {
             try {
                 await bot.sendMessage(chatId, 'ℹ️ Изменений цен не обнаружено.', { parse_mode: 'HTML' });
+                logger.info(`Отправлено сообщение об отсутствии изменений цен для chat_id: ${chatId}`);
             } catch (error) {
                 logger.error(`Не удалось отправить сообщение об отсутствии изменений цен для chat_id: ${chatId}: ${error.message}`);
             }
@@ -272,6 +350,7 @@ async function checkPrices(bot, chatId, isAuto = false) {
     } else if (!isAuto) {
         try {
             await bot.sendMessage(chatId, 'ℹ️ Изменений цен не обнаружено.', { parse_mode: 'HTML' });
+            logger.info(`Отправлено сообщение об отсутствии изменений цен для chat_id: ${chatId}`);
         } catch (error) {
             logger.error(`Не удалось отправить сообщение об отсутствии изменений цен для chat_id: ${chatId}: ${error.message}`);
         }
@@ -280,10 +359,12 @@ async function checkPrices(bot, chatId, isAuto = false) {
     if (!isAuto) {
         try {
             await showMainMenu(bot, chatId);
+            logger.info(`Главное меню показано для chat_id: ${chatId}`);
         } catch (error) {
             logger.error(`Не удалось показать главное меню для chat_id: ${chatId}: ${error.message}`);
         }
     }
+    logger.info(`Проверка цен завершена для chat_id: ${chatId}, обновлено: ${updated} цен`);
 }
 
 module.exports = { addProduct, removeProduct, listProducts, checkPrices };

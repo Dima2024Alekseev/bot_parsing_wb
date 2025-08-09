@@ -1,4 +1,3 @@
-// main.js
 const { setupMessageHandlers, bot } = require('./src/handlers/messageHandlers');
 const { setupCallbackHandlers } = require('./src/handlers/callbackHandlers');
 const { checkPrices } = require('./src/services/botService');
@@ -17,7 +16,7 @@ setupMessageHandlers();
 setupCallbackHandlers();
 
 // Запуск планировщика
-schedulePriceChecks().catch(error => {
+schedulePriceChecks(bot, checkPrices).catch(error => {
     logger.error(`Ошибка при запуске планировщика: ${error.message}`);
 });
 

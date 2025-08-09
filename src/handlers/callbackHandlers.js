@@ -4,7 +4,7 @@ const { bot, userStates } = require('./messageHandlers');
 const logger = require('../utils/logger');
 const { loadJson, saveJson } = require('../utils/fileUtils');
 const { JSON_FILE } = require('../config/config');
-const { schedulePriceChecks } = require('../../main'); // Импортируем функцию
+const { schedulePriceChecks } = require('../utils/scheduler');
 
 /**
  * Инициализирует обработчики callback-запросов.
@@ -42,7 +42,7 @@ function setupCallbackHandlers() {
                 parse_mode: 'HTML',
             });
         } else if (callbackData === 'list_products') {
-            await listProducts(bot, chatId, 1); // Начинаем с первой страницы
+            await listProducts(bot, chatId, 1);
         } else if (callbackData.startsWith('page_prev_') || callbackData.startsWith('page_next_')) {
             const page = parseInt(callbackData.split('_')[2]);
             await listProducts(bot, chatId, page);
@@ -68,8 +68,12 @@ function setupCallbackHandlers() {
                 await saveJson(JSON_FILE, data);
                 await bot.sendMessage(chatId, `⏰ Интервал уведомлений установлен: каждые ${intervalMinutes} минут`, { parse_mode: 'HTML' });
                 await showMainMenu(bot, chatId);
-                // Перезапускаем планировщик для обновления задач
-                await schedulePriceChecks();
+                try {
+                    await schedulePriceChecks(bot, checkPrices);
+                    logger.info(`Планировщик перезапущен после установки интервала ${intervalMinutes} минут для chat_id: ${chatId}`);
+                } catch (error) {
+                    logger.error(`Ошибка при перезапуске планировщика для chat_id: ${chatId}: ${error.message}`);
+                }
             }
         } else if (callbackData === 'main_menu') {
             await showMainMenu(bot, chatId);
