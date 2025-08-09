@@ -1,10 +1,11 @@
+// botService.js
 const { loadJson, saveJson } = require('../utils/fileUtils');
 const { showMainMenu, sendMessageWithPhoto, showPaginatedProducts } = require('../utils/telegramUtils');
 const { getWbProductInfo } = require('./wbService');
 const logger = require('../utils/logger');
 const { JSON_FILE } = require('../config/config');
 const moment = require('moment-timezone');
-const { schedulePriceChecks } = require('../../main'); // Импортируем функцию
+const { schedulePriceChecks } = require('../utils/scheduler'); // Обновлён импорт
 
 /**
  * Добавляет товар в список отслеживания.

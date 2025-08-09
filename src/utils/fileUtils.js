@@ -1,5 +1,6 @@
 const { getCollection, validateUserData } = require('./db');
 const logger = require('./logger');
+const fs = require('fs').promises;
 
 /**
  * Загружает данные пользователей из MongoDB.
@@ -50,4 +51,43 @@ async function saveJson(filePath, data) {
     }
 }
 
-module.exports = { loadJson, saveJson };
+/**
+ * Загружает данные из host_cache.json
+ * @param {string} filePath - Путь к файлу.
+ * @returns {Promise<Object>} - Данные кэша хостов.
+ */
+async function loadHostCache(filePath) {
+    try {
+        const data = await fs.readFile(filePath, 'utf8');
+        if (!data.trim()) { // Проверка на пустой файл
+            logger.info(`Файл ${filePath} пуст, возвращается пустой объект`);
+            return { products: {} };
+        }
+        logger.info(`Успешно загружен файл ${filePath}: ${data}`);
+        return JSON.parse(data);
+    } catch (error) {
+        if (error.code === 'ENOENT') {
+            logger.info(`Файл ${filePath} не найден, возвращается пустой объект`);
+            return { products: {} };
+        }
+        logger.error(`Ошибка чтения ${filePath}: ${error.message}`);
+        throw error;
+    }
+}
+
+/**
+ * Сохраняет данные в host_cache.json
+ * @param {string} filePath - Путь к файлу.
+ * @param {Object} data - Данные для сохранения.
+ */
+async function saveHostCache(filePath, data) {
+    try {
+        await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf8');
+        logger.info(`Данные успешно сохранены в ${filePath}: ${JSON.stringify(data)}`);
+    } catch (error) {
+        logger.error(`Ошибка записи в ${filePath}: ${error.message}`);
+        throw error;
+    }
+}
+
+module.exports = { loadJson, saveJson, loadHostCache, saveHostCache };

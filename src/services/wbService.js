@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { loadJson, saveJson } = require('../utils/fileUtils');
+const { loadHostCache, saveHostCache } = require('../utils/fileUtils');
 const logger = require('../utils/logger');
 const { HOST_CACHE_FILE } = require('../config/config');
 
@@ -36,7 +36,7 @@ async function getWbProductInfo(article) {
     const nm = parseInt(article);
     const vol = Math.floor(nm / 100000);
     const part = Math.floor(nm / 1000);
-    const hostCache = await loadJson(HOST_CACHE_FILE);
+    const hostCache = await loadHostCache(HOST_CACHE_FILE); // Используем новую функцию
     const possibleHosts = Array.from({ length: 100 }, (_, i) => String(i + 1).padStart(2, '0'));
     let cardData = null;
     let latestPrice = 0;
@@ -53,7 +53,7 @@ async function getWbProductInfo(article) {
                 cardData = cardResponse.data;
                 hostCache.products = hostCache.products || {};
                 hostCache.products[vol] = attemptHost;
-                await saveJson(HOST_CACHE_FILE, hostCache);
+                await saveHostCache(HOST_CACHE_FILE, hostCache); // Используем новую функцию
                 imageUrl = `https://basket-${attemptHost}.wbbasket.ru/vol${vol}/part${part}/${article}/images/big/1.webp`;
                 break;
             }
