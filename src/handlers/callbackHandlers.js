@@ -41,7 +41,10 @@ function setupCallbackHandlers() {
                 parse_mode: 'HTML',
             });
         } else if (callbackData === 'list_products') {
-            await listProducts(bot, chatId);
+            await listProducts(bot, chatId, 1); // Начинаем с первой страницы
+        } else if (callbackData.startsWith('page_prev_') || callbackData.startsWith('page_next_')) {
+            const page = parseInt(callbackData.split('_')[2]);
+            await listProducts(bot, chatId, page);
         } else if (callbackData === 'check_prices') {
             await checkPrices(bot, chatId);
         } else if (callbackData.startsWith('remove_')) {

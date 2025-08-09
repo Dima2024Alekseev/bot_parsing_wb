@@ -15,28 +15,74 @@
               "price": 240
             }
           ]
-        }
-      },
-      "notificationInterval": "*/15 * * * *"
-    },
-    "6825148174": {
-      "products": {
-        "242654056": {
-          "name": "Шлейка для собак и кошек мелких и средних пород c поводком",
-          "brand": "KINGDOM pets",
-          "current_price": 627,
+        },
+        "226606821": {
+          "name": "Реалистичная подушка-антистресс Поросенок",
+          "brand": "Нескучные вещи",
+          "current_price": 548,
           "rating": 0,
-          "imageUrl": "https://basket-16.wbbasket.ru/vol2426/part242654/242654056/images/big/1.webp",
-          "added_date": "2025-08-09 09:33:45",
+          "imageUrl": "https://basket-15.wbbasket.ru/vol2266/part226606/226606821/images/big/1.webp",
+          "added_date": "2025-08-09 18:24:34",
           "history": [
             {
-              "date": "2025-08-09 09:33:45",
-              "price": 627
+              "date": "2025-08-09 18:24:34",
+              "price": 548
+            }
+          ]
+        },
+        "255137462": {
+          "name": "Дакимакура Солёный огурчик",
+          "brand": "ТриДэ",
+          "current_price": 324,
+          "rating": 0,
+          "imageUrl": "https://basket-16.wbbasket.ru/vol2551/part255137/255137462/images/big/1.webp",
+          "added_date": "2025-08-09 10:11:54",
+          "history": [
+            {
+              "date": "2025-08-09 10:11:54",
+              "price": 324
+            }
+          ]
+        },
+        "289252074": {
+          "name": "Подушка антистресс Бухтар",
+          "brand": "Обнимяу",
+          "current_price": 727,
+          "rating": 0,
+          "imageUrl": "https://basket-18.wbbasket.ru/vol2892/part289252/289252074/images/big/1.webp",
+          "added_date": "2025-08-09 10:00:18",
+          "history": [
+            {
+              "date": "2025-08-09 10:00:18",
+              "price": 737
+            },
+            {
+              "date": "2025-08-09 11:05:58",
+              "price": 727
             }
           ]
         }
       },
-      "notificationInterval": "*/15 * * * *"
+      "notificationInterval": "*/5 * * * *"
+    },
+    "6825148174": {
+      "products": {
+        "214867261": {
+          "name": "Цепочка на шею с крестом",
+          "brand": "ЮвиLOVE",
+          "current_price": 742,
+          "rating": 0,
+          "imageUrl": "https://basket-14.wbbasket.ru/vol2148/part214867/214867261/images/big/1.webp",
+          "added_date": "2025-08-09 18:38:58",
+          "history": [
+            {
+              "date": "2025-08-09 18:38:58",
+              "price": 742
+            }
+          ]
+        }
+      },
+      "notificationInterval": "*/5 * * * *"
     }
   }
 }

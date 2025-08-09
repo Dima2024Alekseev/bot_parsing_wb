@@ -1,8 +1,9 @@
 const { loadJson, saveJson } = require('../utils/fileUtils');
-const { showMainMenu, sendMessageWithPhoto } = require('../utils/telegramUtils');
+const { showMainMenu, sendMessageWithPhoto, showPaginatedProducts } = require('../utils/telegramUtils');
 const { getWbProductInfo } = require('./wbService');
 const logger = require('../utils/logger');
 const { JSON_FILE } = require('../config/config');
+const moment = require('moment-timezone');
 
 /**
  * Добавляет товар в список отслеживания.
@@ -49,14 +50,15 @@ async function addProduct(bot, chatId, article) {
             return;
         }
 
+        const currentTime = moment().tz('Asia/Bangkok').format('YYYY-MM-DD HH:mm:ss'); // GMT+7
         data.users[chatId].products[article] = {
             name: productInfo.name,
             brand: productInfo.brand,
             current_price: productInfo.price,
             rating: productInfo.rating,
             imageUrl: productInfo.imageUrl,
-            added_date: new Date().toISOString().slice(0, 19).replace('T', ' '),
-            history: [{ date: new Date().toISOString().slice(0, 19).replace('T', ' '), price: productInfo.price }],
+            added_date: currentTime,
+            history: [{ date: currentTime, price: productInfo.price }],
         };
         await saveJson(JSON_FILE, data);
 
@@ -111,11 +113,12 @@ async function removeProduct(bot, chatId, article) {
 }
 
 /**
- * Показывает список отслеживаемых товаров.
+ * Показывает список отслеживаемых товаров с пагинацией (1 товар на страницу).
  * @param {Object} bot - Экземпляр Telegram-бота.
  * @param {number} chatId - ID чата.
+ * @param {number} [page=1] - Номер текущей страницы.
  */
-async function listProducts(bot, chatId) {
+async function listProducts(bot, chatId, page = 1) {
     const data = await loadJson(JSON_FILE);
     if (!data.users[chatId] || !Object.keys(data.users[chatId].products).length) {
         logger.info(`Список товаров пуст, chat_id: ${chatId}`);
@@ -124,22 +127,16 @@ async function listProducts(bot, chatId) {
         return;
     }
 
-    logger.info(`Отправка списка товаров, chat_id: ${chatId}`);
-    for (const [article, product] of Object.entries(data.users[chatId].products)) {
-        const caption = `
-🔹 <b>${product.name}</b>
+    const products = Object.entries(data.users[chatId].products);
+    const pageSize = 1; // Один товар на страницу
+    const totalPages = Math.ceil(products.length / pageSize);
+    const currentPage = Math.max(1, Math.min(page, totalPages)); // Ограничиваем страницу допустимыми значениями
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const paginatedProducts = products.slice(startIndex, endIndex);
 
-Артикул: <code>${article}</code>
-
-Цена: ${product.current_price} руб.
-
-Добавлен: ${product.added_date}
-
-<a href="https://www.wildberries.ru/catalog/${article}/detail.aspx">Открыть на WB</a>
-`;
-        await sendMessageWithPhoto(bot, chatId, caption, product.imageUrl);
-    }
-    await showMainMenu(bot, chatId);
+    logger.info(`Отправка списка товаров, chat_id: ${chatId}, страница: ${currentPage}/${totalPages}`);
+    await showPaginatedProducts(bot, chatId, paginatedProducts, currentPage, totalPages);
 }
 
 /**
@@ -152,23 +149,35 @@ async function checkPrices(bot, chatId, isAuto = false) {
     const data = await loadJson(JSON_FILE);
     if (!data.users[chatId] || !Object.keys(data.users[chatId].products).length) {
         logger.info(`Нет товаров для проверки, chat_id: ${chatId}`);
-        await bot.sendMessage(chatId, 'ℹ️ Нет товаров для проверки.', { parse_mode: 'HTML' });
-        if (!isAuto) await showMainMenu(bot, chatId);
+        if (!isAuto) {
+            try {
+                await bot.sendMessage(chatId, 'ℹ️ Нет товаров для проверки.', { parse_mode: 'HTML' });
+                await showMainMenu(bot, chatId);
+            } catch (error) {
+                logger.error(`Не удалось отправить сообщение о пустом списке товаров для chat_id: ${chatId}: ${error.message}`);
+            }
+        }
         return;
     }
 
     if (!isAuto) {
-        await bot.sendMessage(chatId, '🔄 Начинаю проверку цен...', { parse_mode: 'HTML' });
+        try {
+            await bot.sendMessage(chatId, '🔄 Начинаю проверку цен...', { parse_mode: 'HTML' });
+        } catch (error) {
+            logger.error(`Не удалось отправить сообщение о начале проверки цен для chat_id: ${chatId}: ${error.message}`);
+            return;
+        }
     }
 
     let updated = 0;
     const changes = [];
 
     for (const [article, product] of Object.entries(data.users[chatId].products)) {
-        logger.info(`Проверка товара ${article}`);
-        const productInfo = await getWbProductInfo(article);
-        if (!productInfo.success) {
-            const caption = `
+        logger.info(`Проверка товара ${article} для chat_id: ${chatId}`);
+        try {
+            const productInfo = await getWbProductInfo(article);
+            if (!productInfo.success) {
+                const caption = `
 ❌ <b>${product.name}</b>
 
 Артикул: <code>${article}</code>
@@ -177,21 +186,22 @@ async function checkPrices(bot, chatId, isAuto = false) {
 
 <a href="https://www.wildberries.ru/catalog/${article}/detail.aspx">Открыть</a>
 `;
-            changes.push({ caption, imageUrl: product.imageUrl });
-            continue;
-        }
+                changes.push({ caption, imageUrl: product.imageUrl });
+                continue;
+            }
 
-        const oldPrice = product.current_price;
-        const newPrice = productInfo.price;
+            const oldPrice = product.current_price;
+            const newPrice = productInfo.price;
 
-        if (newPrice !== oldPrice) {
-            data.users[chatId].products[article].current_price = newPrice;
-            data.users[chatId].products[article].imageUrl = productInfo.imageUrl;
-            data.users[chatId].products[article].history.push({
-                date: new Date().toISOString().slice(0, 19).replace('T', ' '),
-                price: newPrice,
-            });
-            const caption = `
+            if (newPrice !== oldPrice) {
+                const currentTime = moment().tz('Asia/Bangkok').format('YYYY-MM-DD HH:mm:ss'); // GMT+7
+                data.users[chatId].products[article].current_price = newPrice;
+                data.users[chatId].products[article].imageUrl = productInfo.imageUrl;
+                data.users[chatId].products[article].history.push({
+                    date: currentTime,
+                    price: newPrice,
+                });
+                const caption = `
 🔔 <b>${product.name}</b>
 
 Артикул: <code>${article}</code>
@@ -204,10 +214,10 @@ async function checkPrices(bot, chatId, isAuto = false) {
 
 <a href="https://www.wildberries.ru/catalog/${article}/detail.aspx">Открыть</a>
 `;
-            changes.push({ caption, imageUrl: productInfo.imageUrl });
-            updated++;
-        } else if (isAuto) {
-            const caption = `
+                changes.push({ caption, imageUrl: productInfo.imageUrl });
+                updated++;
+            } else if (isAuto) {
+                const caption = `
 🔹 <b>${product.name}</b>
 
 Артикул: <code>${article}</code>
@@ -216,25 +226,61 @@ async function checkPrices(bot, chatId, isAuto = false) {
 
 <a href="https://www.wildberries.ru/catalog/${article}/detail.aspx">Открыть</a>
 `;
-            changes.push({ caption, imageUrl: productInfo.imageUrl });
+                changes.push({ caption, imageUrl: productInfo.imageUrl });
+            }
+        } catch (error) {
+            logger.error(`Ошибка при проверке товара ${article} для chat_id: ${chatId}: ${error.message}`);
+            const caption = `
+❌ <b>${product.name}</b>
+
+Артикул: <code>${article}</code>
+
+Ошибка: Не удалось проверить цену
+
+<a href="https://www.wildberries.ru/catalog/${article}/detail.aspx">Открыть</a>
+`;
+            changes.push({ caption, imageUrl: product.imageUrl });
         }
     }
 
     if (changes.length > 0) {
         await saveJson(JSON_FILE, data);
         for (const change of changes) {
-            await sendMessageWithPhoto(bot, chatId, change.caption, change.imageUrl);
+            try {
+                await sendMessageWithPhoto(bot, chatId, change.caption, change.imageUrl);
+                await new Promise(resolve => setTimeout(resolve, 300)); // Задержка 300 мс
+            } catch (error) {
+                logger.error(`Не удалось отправить сообщение для chat_id: ${chatId}: ${error.message}`);
+            }
         }
         if (!isAuto && updated > 0) {
-            await bot.sendMessage(chatId, `📊 Обновлено ${updated} цен`, { parse_mode: 'HTML' });
+            try {
+                await bot.sendMessage(chatId, `📊 Обновлено ${updated} цен`, { parse_mode: 'HTML' });
+            } catch (error) {
+                logger.error(`Не удалось отправить сообщение об обновлении цен для chat_id: ${chatId}: ${error.message}`);
+            }
         } else if (!isAuto) {
-            await bot.sendMessage(chatId, 'ℹ️ Изменений цен не обнаружено.', { parse_mode: 'HTML' });
+            try {
+                await bot.sendMessage(chatId, 'ℹ️ Изменений цен не обнаружено.', { parse_mode: 'HTML' });
+            } catch (error) {
+                logger.error(`Не удалось отправить сообщение об отсутствии изменений цен для chat_id: ${chatId}: ${error.message}`);
+            }
         }
     } else if (!isAuto) {
-        await bot.sendMessage(chatId, 'ℹ️ Изменений цен не обнаружено.', { parse_mode: 'HTML' });
+        try {
+            await bot.sendMessage(chatId, 'ℹ️ Изменений цен не обнаружено.', { parse_mode: 'HTML' });
+        } catch (error) {
+            logger.error(`Не удалось отправить сообщение об отсутствии изменений цен для chat_id: ${chatId}: ${error.message}`);
+        }
     }
 
-    if (!isAuto) await showMainMenu(bot, chatId);
+    if (!isAuto) {
+        try {
+            await showMainMenu(bot, chatId);
+        } catch (error) {
+            logger.error(`Не удалось показать главное меню для chat_id: ${chatId}: ${error.message}`);
+        }
+    }
 }
 
 module.exports = { addProduct, removeProduct, listProducts, checkPrices };

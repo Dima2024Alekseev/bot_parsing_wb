@@ -70,4 +70,51 @@ async function sendMessageWithPhoto(bot, chatId, caption, imageUrl) {
     }
 }
 
-module.exports = { showMainMenu, sendMessageWithPhoto, showNotificationMenu };
+/**
+ * Показывает товары текущей страницы с кнопками пагинации.
+ * @param {Object} bot - Экземпляр Telegram-бота.
+ * @param {number} chatId - ID чата.
+ * @param {Array} products - Список товаров для текущей страницы.
+ * @param {number} currentPage - Текущая страница.
+ * @param {number} totalPages - Общее количество страниц.
+ */
+async function showPaginatedProducts(bot, chatId, products, currentPage, totalPages) {
+    for (const [article, product] of products) {
+        const caption = `
+🔹 <b>${product.name}</b>
+
+Артикул: <code>${article}</code>
+
+Цена: ${product.current_price} руб.
+
+Добавлен: ${product.added_date}
+
+<a href="https://www.wildberries.ru/catalog/${article}/detail.aspx">Открыть на WB</a>
+`;
+        await sendMessageWithPhoto(bot, chatId, caption, product.imageUrl);
+    }
+
+    const keyboard = {
+        inline_keyboard: [],
+    };
+
+    if (totalPages > 1) {
+        const navigationButtons = [];
+        if (currentPage > 1) {
+            navigationButtons.push({ text: '⬅️ Предыдущая', callback_data: `page_prev_${currentPage - 1}` });
+        }
+        if (currentPage < totalPages) {
+            navigationButtons.push({ text: 'Следующая ➡️', callback_data: `page_next_${currentPage + 1}` });
+        }
+        keyboard.inline_keyboard.push(navigationButtons);
+    }
+
+    keyboard.inline_keyboard.push([{ text: 'Вернуться в главное меню', callback_data: 'main_menu' }]);
+
+    await bot.sendMessage(chatId, `📄 Страница ${currentPage} из ${totalPages}`, {
+        reply_markup: keyboard,
+        parse_mode: 'HTML',
+    });
+}
+
+module.exports = { showMainMenu, sendMessageWithPhoto, showNotificationMenu, showPaginatedProducts };

@@ -14,6 +14,8 @@ setupCallbackHandlers();
 // Планировщик автоматической проверки для каждого пользователя
 async function schedulePriceChecks() {
     const data = await loadJson(JSON_FILE);
+    logger.info(`Загружено ${Object.keys(data.users).length} пользователей для планирования проверок`);
+    
     for (const chatId in data.users) {
         const userData = data.users[chatId];
         if (!userData.products || !Object.keys(userData.products).length) {
@@ -22,14 +24,28 @@ async function schedulePriceChecks() {
         }
         const cronExpression = userData.notificationInterval || DEFAULT_NOTIFICATION_INTERVAL;
         logger.info(`Запуск планировщика для chat_id: ${chatId} с интервалом: ${cronExpression}`);
-        schedule.scheduleJob(cronExpression, async () => {
-            logger.info(`Запуск автоматической проверки цен для chat_id: ${chatId}`);
-            await checkPrices(bot, chatId, true);
-        });
+        
+        try {
+            // Проверяем, доступен ли чат
+            await bot.getChat(chatId);
+            schedule.scheduleJob(cronExpression, async () => {
+                logger.info(`Запуск автоматической проверки цен для chat_id: ${chatId}`);
+                try {
+                    await checkPrices(bot, chatId, true);
+                    logger.info(`Автоматическая проверка цен завершена для chat_id: ${chatId}`);
+                } catch (error) {
+                    logger.error(`Ошибка при автоматической проверке цен для chat_id: ${chatId}: ${error.message}`);
+                }
+            });
+        } catch (error) {
+            logger.error(`Не удалось запланировать проверку для chat_id: ${chatId}, ошибка: ${error.message}`);
+        }
     }
 }
 
 // Запуск планировщика
-schedulePriceChecks();
+schedulePriceChecks().catch(error => {
+    logger.error(`Ошибка при запуске планировщика: ${error.message}`);
+});
 
 logger.info('Бот запущен');
