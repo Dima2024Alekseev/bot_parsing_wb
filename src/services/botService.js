@@ -15,7 +15,7 @@ const { schedulePriceChecks } = require('../../main'); // Импортируем
 async function addProduct(bot, chatId, article) {
     const data = await loadJson(JSON_FILE);
     data.users[chatId] = data.users[chatId] || { products: {}, notificationInterval: null };
-    
+
     if (data.users[chatId].products[article]) {
         logger.info(`Товар ${article} уже отслеживается, chat_id: ${chatId}`);
         await bot.sendMessage(chatId, `ℹ️ Товар ${article} уже отслеживается!`, { parse_mode: 'HTML' });
