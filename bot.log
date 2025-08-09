@@ -3060,3 +3060,426 @@
 2025-08-09T08:24:29.684Z - INFO - Отправка сообщения, imageUrl: https://basket-13.wbbasket.ru/vol1980/part198067/198067490/images/big/1.webp
 2025-08-09T08:24:38.190Z - INFO - Callback_query: interval_15, chat_id: 6825148174
 2025-08-09T08:24:38.388Z - INFO - Данные успешно сохранены в wb_products.json
+2025-08-09T08:34:19.873Z - INFO - Бот запущен
+2025-08-09T08:34:20.088Z - INFO - Запуск планировщика для chat_id: 1364079703 с интервалом: */15 * * * *
+2025-08-09T08:34:20.142Z - INFO - Запуск планировщика для chat_id: 6825148174 с интервалом: */15 * * * *
+2025-08-09T08:39:05.564Z - INFO - Бот запущен
+2025-08-09T08:39:05.636Z - INFO - Запуск планировщика для chat_id: 1364079703 с интервалом: */15 * * * *
+2025-08-09T08:39:05.658Z - INFO - Запуск планировщика для chat_id: 6825148174 с интервалом: */15 * * * *
+2025-08-09T08:39:44.980Z - INFO - Бот запущен
+2025-08-09T08:39:45.062Z - INFO - Запуск планировщика для chat_id: 1364079703 с интервалом: */15 * * * *
+2025-08-09T08:39:45.090Z - INFO - Запуск планировщика для chat_id: 6825148174 с интервалом: */15 * * * *
+2025-08-09T08:42:12.723Z - INFO - Бот запущен
+2025-08-09T08:42:14.625Z - ERROR - Ошибка подключения к MongoDB: bad auth : authentication failed
+2025-08-09T08:42:14.626Z - ERROR - Ошибка при запуске планировщика: bad auth : authentication failed
+2025-08-09T08:43:24.230Z - INFO - Бот запущен
+2025-08-09T08:43:26.090Z - ERROR - Ошибка подключения к MongoDB: bad auth : authentication failed
+2025-08-09T08:43:26.091Z - ERROR - Ошибка при запуске планировщика: bad auth : authentication failed
+2025-08-09T08:44:50.902Z - INFO - Бот запущен
+2025-08-09T08:44:51.027Z - ERROR - Ошибка подключения к MongoDB: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:44:51.028Z - ERROR - Ошибка при запуске планировщика: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:45:42.835Z - INFO - Бот запущен
+2025-08-09T08:45:42.961Z - ERROR - Ошибка подключения к MongoDB: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:45:42.962Z - ERROR - Ошибка при запуске планировщика: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:46:30.118Z - INFO - Бот запущен
+2025-08-09T08:46:30.237Z - ERROR - Ошибка подключения к MongoDB: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:46:30.238Z - ERROR - Ошибка при запуске планировщика: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:47:03.084Z - INFO - Бот запущен
+2025-08-09T08:47:03.228Z - ERROR - Ошибка подключения к MongoDB: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:47:03.231Z - ERROR - Ошибка при запуске планировщика: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:47:18.395Z - INFO - Бот запущен
+2025-08-09T08:47:18.531Z - ERROR - Ошибка подключения к MongoDB: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:47:18.532Z - ERROR - Ошибка при запуске планировщика: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:47:32.673Z - INFO - Бот запущен
+2025-08-09T08:47:32.799Z - ERROR - Ошибка подключения к MongoDB: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:47:32.800Z - ERROR - Ошибка при запуске планировщика: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:47:44.312Z - INFO - Бот запущен
+2025-08-09T08:47:44.439Z - ERROR - Ошибка подключения к MongoDB: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:47:44.440Z - ERROR - Ошибка при запуске планировщика: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:48:28.762Z - INFO - Бот запущен
+2025-08-09T08:48:28.886Z - ERROR - Ошибка подключения к MongoDB: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:48:28.887Z - ERROR - Ошибка при запуске планировщика: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:49:26.601Z - INFO - Бот запущен
+2025-08-09T08:49:26.725Z - ERROR - Ошибка подключения к MongoDB: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:49:26.726Z - ERROR - Ошибка при запуске планировщика: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:51:21.109Z - INFO - Попытка подключения к MongoDB с URI: mongodb+srv://admin:1qaz@cluster0.9cyzkoa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+2025-08-09T08:51:21.130Z - INFO - Бот запущен
+2025-08-09T08:51:22.903Z - ERROR - Ошибка подключения к MongoDB: bad auth : authentication failed
+2025-08-09T08:51:22.904Z - ERROR - Ошибка при запуске планировщика: bad auth : authentication failed
+2025-08-09T08:55:50.520Z - INFO - Попытка подключения к MongoDB с URI: mongodb+srv://qaz:1qaz@WSX@cluster0.9cyzkoa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+2025-08-09T08:55:50.537Z - INFO - Бот запущен
+2025-08-09T08:55:50.665Z - ERROR - Ошибка подключения к MongoDB: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:55:50.666Z - ERROR - Ошибка при запуске планировщика: querySrv ENOTFOUND _mongodb._tcp.WSX
+2025-08-09T08:59:16.376Z - INFO - Попытка подключения к MongoDB с URI: mongodb+srv://qaz:1qaz@cluster0.9cyzkoa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+2025-08-09T08:59:16.391Z - INFO - Бот запущен
+2025-08-09T08:59:18.239Z - ERROR - Ошибка подключения к MongoDB: bad auth : authentication failed
+2025-08-09T08:59:18.240Z - ERROR - Ошибка при запуске планировщика: bad auth : authentication failed
+2025-08-09T08:59:34.068Z - INFO - Попытка подключения к MongoDB с URI: mongodb+srv://qaz:1qaz@cluster0.9cyzkoa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+2025-08-09T08:59:34.084Z - INFO - Бот запущен
+2025-08-09T08:59:36.034Z - ERROR - Ошибка подключения к MongoDB: bad auth : authentication failed
+2025-08-09T08:59:36.035Z - ERROR - Ошибка при запуске планировщика: bad auth : authentication failed
+2025-08-09T08:59:40.680Z - INFO - Попытка подключения к MongoDB с URI: mongodb+srv://qaz:1qaz@cluster0.9cyzkoa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+2025-08-09T08:59:40.697Z - INFO - Бот запущен
+2025-08-09T08:59:42.164Z - ERROR - Ошибка подключения к MongoDB: bad auth : authentication failed
+2025-08-09T08:59:42.165Z - ERROR - Ошибка при запуске планировщика: bad auth : authentication failed
+2025-08-09T09:02:26.537Z - INFO - Попытка подключения к MongoDB с URI: mongodb+srv://qaz:1qaz@cluster0.9cyzkoa.mongodb.net/bot_wb?retryWrites=true&w=majority&appName=Cluster0
+2025-08-09T09:02:26.559Z - INFO - Бот запущен
+2025-08-09T09:02:28.380Z - ERROR - Ошибка подключения к MongoDB: bad auth : authentication failed
+2025-08-09T09:02:28.381Z - ERROR - Ошибка при запуске планировщика: bad auth : authentication failed
+2025-08-09T09:15:42.741Z - INFO - Попытка подключения к MongoDB с URI: mongodb+srv://qwerty:Ne4Ejr3WQ4uz3!G@cluster0.ilf7sjk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+2025-08-09T09:15:42.756Z - INFO - Бот запущен
+2025-08-09T09:15:44.564Z - INFO - Успешно подключено к MongoDB через Mongoose
+2025-08-09T09:16:06.713Z - INFO - Команда /start, chat_id: 1364079703
+2025-08-09T09:16:12.294Z - INFO - Команда /start, chat_id: 1364079703
+2025-08-09T09:16:24.921Z - INFO - Запрос к card API: https://basket-01.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:26.160Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-01.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:26.161Z - INFO - Запрос к card API: https://basket-02.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:26.982Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-02.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:26.983Z - INFO - Запрос к card API: https://basket-03.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:27.831Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-03.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:27.831Z - INFO - Запрос к card API: https://basket-04.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:28.668Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-04.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:28.669Z - INFO - Запрос к card API: https://basket-05.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:29.522Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-05.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:29.523Z - INFO - Запрос к card API: https://basket-06.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:29.923Z - INFO - Отправка сообщения ожидания для 218849148
+2025-08-09T09:16:30.330Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-06.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:30.331Z - INFO - Запрос к card API: https://basket-07.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:31.139Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-07.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:31.140Z - INFO - Запрос к card API: https://basket-08.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:31.947Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-08.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:31.947Z - INFO - Запрос к card API: https://basket-09.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:32.770Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-09.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:32.771Z - INFO - Запрос к card API: https://basket-10.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:33.560Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-10.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:33.561Z - INFO - Запрос к card API: https://basket-11.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:34.402Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-11.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:34.402Z - INFO - Запрос к card API: https://basket-12.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:35.211Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-12.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:35.212Z - INFO - Запрос к card API: https://basket-13.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:36.018Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-13.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:36.019Z - INFO - Запрос к card API: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:16:36.794Z - INFO - Данные успешно сохранены в host_cache.json
+2025-08-09T09:16:36.958Z - INFO - Изображение доступно: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/images/big/1.webp
+2025-08-09T09:16:36.959Z - INFO - Запрос к price API: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/info/price-history.json
+2025-08-09T09:16:37.086Z - INFO - Запрос к wb_card API: https://card.wb.ru/cards/v4/detail?appType=1&curr=rub&dest=123585822&spp=30&hide_dtype=13&ab_testid=no_reranking&lang=ru&nm=218849148
+2025-08-09T09:16:37.628Z - INFO - Успешно получены данные для 218849148, imageUrl: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/images/big/1.webp
+2025-08-09T09:16:37.783Z - INFO - Данные пользователя 1364079703 успешно сохранены в MongoDB
+2025-08-09T09:16:37.783Z - INFO - Отправка сообщения, imageUrl: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/images/big/1.webp
+2025-08-09T09:16:43.733Z - INFO - Отправка списка товаров, chat_id: 1364079703
+2025-08-09T09:16:43.734Z - INFO - Отправка сообщения, imageUrl: нет изображения
+2025-08-09T09:16:43.985Z - INFO - Отправка сообщения, imageUrl: нет изображения
+2025-08-09T09:16:44.161Z - INFO - Отправка сообщения, imageUrl: нет изображения
+2025-08-09T09:18:39.105Z - INFO - Попытка подключения к MongoDB с URI: mongodb+srv://user:qaz123@cluster0.gc2mk.mongodb.net/huligan-sport?retryWrites=true&w=majority&appName=Cluster0
+2025-08-09T09:18:39.124Z - INFO - Бот запущен
+2025-08-09T09:18:41.206Z - INFO - Успешно подключено к MongoDB через Mongoose
+2025-08-09T09:18:42.488Z - INFO - Запуск планировщика для chat_id: undefined с интервалом: */5 * * * *
+2025-08-09T09:18:47.057Z - INFO - Список товаров пуст, chat_id: 1364079703
+2025-08-09T09:18:57.196Z - INFO - Запрос к card API: https://basket-01.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:18:57.884Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-01.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:18:57.885Z - INFO - Запрос к card API: https://basket-02.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:18:58.566Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-02.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:18:58.567Z - INFO - Запрос к card API: https://basket-03.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:18:59.257Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-03.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:18:59.258Z - INFO - Запрос к card API: https://basket-04.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:00.053Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-04.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:00.054Z - INFO - Запрос к card API: https://basket-05.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:00.744Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-05.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:00.745Z - INFO - Запрос к card API: https://basket-06.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:01.434Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-06.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:01.435Z - INFO - Запрос к card API: https://basket-07.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:02.101Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-07.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:02.102Z - INFO - Запрос к card API: https://basket-08.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:02.200Z - INFO - Отправка сообщения ожидания для 400654457
+2025-08-09T09:19:02.816Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-08.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:02.817Z - INFO - Запрос к card API: https://basket-09.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:03.516Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-09.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:03.517Z - INFO - Запрос к card API: https://basket-10.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:04.205Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-10.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:04.206Z - INFO - Запрос к card API: https://basket-11.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:04.910Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-11.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:04.911Z - INFO - Запрос к card API: https://basket-12.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:05.724Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-12.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:05.724Z - INFO - Запрос к card API: https://basket-13.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:06.533Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-13.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:06.534Z - INFO - Запрос к card API: https://basket-14.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:07.202Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-14.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:07.202Z - INFO - Запрос к card API: https://basket-15.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:08.037Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-15.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:08.037Z - INFO - Запрос к card API: https://basket-16.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:08.851Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-16.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:08.851Z - INFO - Запрос к card API: https://basket-17.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:09.557Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-17.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:09.558Z - INFO - Запрос к card API: https://basket-18.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:10.350Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-18.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:10.351Z - INFO - Запрос к card API: https://basket-19.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:11.054Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-19.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:11.055Z - INFO - Запрос к card API: https://basket-20.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:11.880Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-20.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:11.882Z - INFO - Запрос к card API: https://basket-21.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:12.687Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-21.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:12.687Z - INFO - Запрос к card API: https://basket-22.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:13.514Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-22.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:13.515Z - INFO - Запрос к card API: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T09:19:14.278Z - INFO - Данные успешно сохранены в host_cache.json
+2025-08-09T09:19:14.418Z - INFO - Изображение доступно: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/images/big/1.webp
+2025-08-09T09:19:14.419Z - INFO - Запрос к price API: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/info/price-history.json
+2025-08-09T09:19:14.565Z - INFO - Запрос к wb_card API: https://card.wb.ru/cards/v4/detail?appType=1&curr=rub&dest=123585822&spp=30&hide_dtype=13&ab_testid=no_reranking&lang=ru&nm=400654457
+2025-08-09T09:19:14.957Z - INFO - Успешно получены данные для 400654457, imageUrl: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/images/big/1.webp
+2025-08-09T09:19:15.128Z - INFO - Данные пользователя 1364079703 успешно сохранены в MongoDB
+2025-08-09T09:19:15.128Z - INFO - Отправка сообщения, imageUrl: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/images/big/1.webp
+2025-08-09T09:19:19.674Z - INFO - Отправка списка товаров, chat_id: 1364079703
+2025-08-09T09:19:19.675Z - INFO - Отправка сообщения, imageUrl: нет изображения
+2025-08-09T09:19:19.856Z - INFO - Отправка сообщения, imageUrl: нет изображения
+2025-08-09T09:19:20.036Z - INFO - Отправка сообщения, imageUrl: нет изображения
+2025-08-09T09:20:00.013Z - INFO - Запуск автоматической проверки цен для chat_id: undefined
+2025-08-09T09:20:00.168Z - INFO - Нет товаров для проверки, chat_id: undefined
+2025-08-09T09:22:46.230Z - INFO - Попытка подключения к MongoDB с URI: mongodb+srv://user:qaz123@cluster0.gc2mk.mongodb.net/huligan-sport?retryWrites=true&w=majority&appName=Cluster0
+2025-08-09T09:22:46.253Z - INFO - Бот запущен
+2025-08-09T09:22:48.466Z - INFO - Успешно подключено к MongoDB через Mongoose
+2025-08-09T09:23:25.679Z - INFO - Попытка подключения к MongoDB с URI: mongodb+srv://user:qaz123@cluster0.gc2mk.mongodb.net/huligan-sport?retryWrites=true&w=majority&appName=Cluster0
+2025-08-09T09:23:25.705Z - INFO - Бот запущен
+2025-08-09T09:23:27.482Z - INFO - Попытка подключения к MongoDB с URI: mongodb+srv://user:qaz123@cluster0.gc2mk.mongodb.net/huligan-sport?retryWrites=true&w=majority&appName=Cluster0
+2025-08-09T09:23:27.502Z - INFO - Бот запущен
+2025-08-09T09:23:29.462Z - INFO - Успешно подключено к MongoDB через Mongoose
+2025-08-09T09:23:35.246Z - INFO - Список товаров пуст, chat_id: 1364079703
+2025-08-09T09:23:42.993Z - INFO - Запрос к card API: https://basket-01.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:43.820Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-01.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:43.821Z - INFO - Запрос к card API: https://basket-02.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:44.642Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-02.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:44.643Z - INFO - Запрос к card API: https://basket-03.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:45.617Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-03.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:45.618Z - INFO - Запрос к card API: https://basket-04.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:46.493Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-04.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:46.494Z - INFO - Запрос к card API: https://basket-05.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:47.310Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-05.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:47.311Z - INFO - Запрос к card API: https://basket-06.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:47.996Z - INFO - Отправка сообщения ожидания для 218849148
+2025-08-09T09:23:48.150Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-06.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:48.151Z - INFO - Запрос к card API: https://basket-07.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:49.111Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-07.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:49.112Z - INFO - Запрос к card API: https://basket-08.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:50.028Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-08.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:50.029Z - INFO - Запрос к card API: https://basket-09.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:50.854Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-09.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:50.854Z - INFO - Запрос к card API: https://basket-10.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:51.655Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-10.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:51.658Z - INFO - Запрос к card API: https://basket-11.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:52.480Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-11.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:52.481Z - INFO - Запрос к card API: https://basket-12.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:53.307Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-12.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:53.308Z - INFO - Запрос к card API: https://basket-13.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:54.130Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-13.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:54.131Z - INFO - Запрос к card API: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T09:23:54.888Z - INFO - Данные успешно сохранены в host_cache.json
+2025-08-09T09:23:55.030Z - INFO - Изображение доступно: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/images/big/1.webp
+2025-08-09T09:23:55.031Z - INFO - Запрос к price API: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/info/price-history.json
+2025-08-09T09:23:55.181Z - INFO - Запрос к wb_card API: https://card.wb.ru/cards/v4/detail?appType=1&curr=rub&dest=123585822&spp=30&hide_dtype=13&ab_testid=no_reranking&lang=ru&nm=218849148
+2025-08-09T09:23:55.763Z - INFO - Успешно получены данные для 218849148, imageUrl: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/images/big/1.webp
+2025-08-09T09:23:55.765Z - INFO - Сохранение данных для chatId: 1364079703, данные:
+2025-08-09T09:23:55.985Z - INFO - Данные пользователя 1364079703 успешно сохранены в MongoDB
+2025-08-09T09:23:55.986Z - INFO - Отправка сообщения, imageUrl: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/images/big/1.webp
+2025-08-09T09:24:01.427Z - INFO - Отправка списка товаров, chat_id: 1364079703
+2025-08-09T09:24:01.427Z - INFO - Отправка сообщения, imageUrl: нет изображения
+2025-08-09T09:24:01.632Z - INFO - Отправка сообщения, imageUrl: нет изображения
+2025-08-09T09:24:01.857Z - INFO - Отправка сообщения, imageUrl: нет изображения
+2025-08-09T09:25:46.886Z - INFO - Callback_query: interval_15, chat_id: 1364079703
+2025-08-09T09:25:47.297Z - INFO - Сохранение данных для chatId: 1364079703, данные:
+2025-08-09T09:25:47.513Z - INFO - Данные пользователя 1364079703 успешно сохранены в MongoDB
+2025-08-09T09:26:21.032Z - INFO - Попытка подключения к MongoDB с URI: mongodb+srv://user:qaz123@cluster0.gc2mk.mongodb.net/huligan-sport?retryWrites=true&w=majority&appName=Cluster0
+2025-08-09T09:26:21.056Z - INFO - Бот запущен
+2025-08-09T09:26:23.398Z - INFO - Успешно подключено к MongoDB через Mongoose
+2025-08-09T09:26:24.867Z - INFO - Запуск планировщика для chat_id: 1364079703 с интервалом: */15 * * * *
+2025-08-09T09:26:37.788Z - INFO - Попытка подключения к MongoDB с URI: mongodb+srv://user:qaz123@cluster0.gc2mk.mongodb.net/huligan-sport?retryWrites=true&w=majority&appName=Cluster0
+2025-08-09T09:26:37.807Z - INFO - Бот запущен
+2025-08-09T09:26:40.307Z - INFO - Успешно подключено к MongoDB через Mongoose
+2025-08-09T09:26:41.767Z - INFO - Запуск планировщика для chat_id: 1364079703 с интервалом: */15 * * * *
+2025-08-09T09:30:00.027Z - INFO - Запуск автоматической проверки цен для chat_id: 1364079703
+2025-08-09T09:30:00.209Z - INFO - Проверка товара $__parent
+2025-08-09T09:30:00.211Z - INFO - Запрос к card API: https://basket-01.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:01.152Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-01.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:01.153Z - INFO - Запрос к card API: https://basket-02.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:02.052Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-02.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:02.053Z - INFO - Запрос к card API: https://basket-03.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:02.871Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-03.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:02.872Z - INFO - Запрос к card API: https://basket-04.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:03.845Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-04.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:03.846Z - INFO - Запрос к card API: https://basket-05.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:04.895Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-05.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:04.896Z - INFO - Запрос к card API: https://basket-06.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:05.122Z - INFO - Отправка списка товаров, chat_id: 1364079703, продукты:
+2025-08-09T09:30:05.122Z - INFO - Отправка сообщения, imageUrl: нет изображения
+2025-08-09T09:30:05.344Z - INFO - Отправка сообщения, imageUrl: нет изображения
+2025-08-09T09:30:05.572Z - INFO - Отправка сообщения, imageUrl: нет изображения
+2025-08-09T09:30:05.957Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-06.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:05.957Z - INFO - Запрос к card API: https://basket-07.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:06.846Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-07.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:06.846Z - INFO - Запрос к card API: https://basket-08.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:07.971Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-08.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:07.971Z - INFO - Запрос к card API: https://basket-09.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:09.095Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-09.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:09.096Z - INFO - Запрос к card API: https://basket-10.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:10.079Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-10.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:10.080Z - INFO - Запрос к card API: https://basket-11.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:11.224Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-11.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:11.224Z - INFO - Запрос к card API: https://basket-12.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:12.264Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-12.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:12.265Z - INFO - Запрос к card API: https://basket-13.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:13.313Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-13.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:13.314Z - INFO - Запрос к card API: https://basket-14.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:14.410Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-14.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:14.411Z - INFO - Запрос к card API: https://basket-15.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:15.438Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-15.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:15.440Z - INFO - Запрос к card API: https://basket-16.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:16.534Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-16.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:16.535Z - INFO - Запрос к card API: https://basket-17.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:17.586Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-17.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:17.587Z - INFO - Запрос к card API: https://basket-18.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:18.642Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-18.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:18.643Z - INFO - Запрос к card API: https://basket-19.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:19.862Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-19.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:19.862Z - INFO - Запрос к card API: https://basket-20.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:20.751Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-20.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:20.752Z - INFO - Запрос к card API: https://basket-21.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:21.864Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-21.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:21.865Z - INFO - Запрос к card API: https://basket-22.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:22.965Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-22.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:22.966Z - INFO - Запрос к card API: https://basket-23.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:23.863Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-23.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:23.864Z - INFO - Запрос к card API: https://basket-24.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:24.937Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-24.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:24.937Z - INFO - Запрос к card API: https://basket-25.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:26.019Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-25.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:26.020Z - INFO - Запрос к card API: https://basket-26.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:27.078Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-26.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:27.079Z - INFO - Запрос к card API: https://basket-27.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:28.220Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-27.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:28.221Z - INFO - Запрос к card API: https://basket-28.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:29.330Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-28.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:29.331Z - INFO - Запрос к card API: https://basket-29.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:37.308Z - INFO - Запрос к card API: https://basket-01.wbbasket.ru/vol363/part36345/36345264/info/ru/card.json
+2025-08-09T09:30:38.281Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-01.wbbasket.ru/vol363/part36345/36345264/info/ru/card.json
+2025-08-09T09:30:38.281Z - INFO - Запрос к card API: https://basket-02.wbbasket.ru/vol363/part36345/36345264/info/ru/card.json
+2025-08-09T09:30:39.251Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-02.wbbasket.ru/vol363/part36345/36345264/info/ru/card.json
+2025-08-09T09:30:39.252Z - INFO - Запрос к card API: https://basket-03.wbbasket.ru/vol363/part36345/36345264/info/ru/card.json
+2025-08-09T09:30:40.179Z - INFO - Данные успешно сохранены в host_cache.json
+2025-08-09T09:30:40.380Z - INFO - Изображение доступно: https://basket-03.wbbasket.ru/vol363/part36345/36345264/images/big/1.webp
+2025-08-09T09:30:40.381Z - INFO - Запрос к price API: https://basket-03.wbbasket.ru/vol363/part36345/36345264/info/price-history.json
+2025-08-09T09:30:40.527Z - WARN - Ошибка card API: getaddrinfo ENOTFOUND basket-29.wbbasket.ru, URL: https://basket-29.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:40.528Z - INFO - Запрос к card API: https://basket-30.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:40.547Z - INFO - Запрос к wb_card API: https://card.wb.ru/cards/v4/detail?appType=1&curr=rub&dest=123585822&spp=30&hide_dtype=13&ab_testid=no_reranking&lang=ru&nm=36345264
+2025-08-09T09:30:41.071Z - INFO - Успешно получены данные для 36345264, imageUrl: https://basket-03.wbbasket.ru/vol363/part36345/36345264/images/big/1.webp
+2025-08-09T09:30:41.072Z - INFO - Сохранение данных для chatId: 1364079703, данные:
+2025-08-09T09:30:41.338Z - INFO - Данные пользователя 1364079703 успешно сохранены в MongoDB
+2025-08-09T09:30:41.339Z - INFO - Отправка сообщения, imageUrl: https://basket-03.wbbasket.ru/vol363/part36345/36345264/images/big/1.webp
+2025-08-09T09:30:45.600Z - INFO - Отправка списка товаров, chat_id: 1364079703, продукты:
+2025-08-09T09:30:45.600Z - INFO - Отправка сообщения, imageUrl: нет изображения
+2025-08-09T09:30:45.815Z - INFO - Отправка сообщения, imageUrl: нет изображения
+2025-08-09T09:30:46.019Z - INFO - Отправка сообщения, imageUrl: нет изображения
+2025-08-09T09:30:51.720Z - WARN - Ошибка card API: getaddrinfo ENOTFOUND basket-30.wbbasket.ru, URL: https://basket-30.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:51.721Z - INFO - Запрос к card API: https://basket-31.wbbasket.ru/volNaN/partNaN/$__parent/info/ru/card.json
+2025-08-09T09:30:57.596Z - INFO - Попытка подключения к MongoDB с URI: mongodb+srv://user:qaz123@cluster0.gc2mk.mongodb.net/huligan-sport?retryWrites=true&w=majority&appName=Cluster0
+2025-08-09T09:30:57.751Z - INFO - Бот запущен
+2025-08-09T09:30:59.710Z - INFO - Попытка подключения к MongoDB с URI: undefined
+2025-08-09T09:30:59.715Z - INFO - Бот запущен
+2025-08-09T09:30:59.719Z - ERROR - Ошибка подключения к MongoDB: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:30:59.721Z - ERROR - Ошибка при запуске планировщика: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:06.128Z - INFO - Попытка подключения к MongoDB с URI: undefined
+2025-08-09T09:31:06.131Z - INFO - Бот запущен
+2025-08-09T09:31:06.133Z - ERROR - Ошибка подключения к MongoDB: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:06.133Z - ERROR - Ошибка при запуске планировщика: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:15.549Z - INFO - Попытка подключения к MongoDB с URI: undefined
+2025-08-09T09:31:15.552Z - INFO - Бот запущен
+2025-08-09T09:31:15.555Z - ERROR - Ошибка подключения к MongoDB: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:15.556Z - ERROR - Ошибка при запуске планировщика: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:20.867Z - INFO - Попытка подключения к MongoDB с URI: undefined
+2025-08-09T09:31:20.870Z - INFO - Бот запущен
+2025-08-09T09:31:20.872Z - ERROR - Ошибка подключения к MongoDB: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:20.873Z - ERROR - Ошибка при запуске планировщика: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:22.927Z - INFO - Попытка подключения к MongoDB с URI: undefined
+2025-08-09T09:31:22.930Z - INFO - Бот запущен
+2025-08-09T09:31:22.933Z - ERROR - Ошибка подключения к MongoDB: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:22.933Z - ERROR - Ошибка при запуске планировщика: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:32.073Z - INFO - Попытка подключения к MongoDB с URI: undefined
+2025-08-09T09:31:32.076Z - INFO - Бот запущен
+2025-08-09T09:31:32.078Z - ERROR - Ошибка подключения к MongoDB: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:32.079Z - ERROR - Ошибка при запуске планировщика: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:39.325Z - INFO - Попытка подключения к MongoDB с URI: undefined
+2025-08-09T09:31:39.328Z - INFO - Бот запущен
+2025-08-09T09:31:39.331Z - ERROR - Ошибка подключения к MongoDB: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:39.332Z - ERROR - Ошибка при запуске планировщика: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:45.391Z - INFO - Попытка подключения к MongoDB с URI: undefined
+2025-08-09T09:31:45.394Z - INFO - Бот запущен
+2025-08-09T09:31:45.397Z - ERROR - Ошибка подключения к MongoDB: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:45.398Z - ERROR - Ошибка при запуске планировщика: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:55.588Z - INFO - Попытка подключения к MongoDB с URI: undefined
+2025-08-09T09:31:55.591Z - INFO - Бот запущен
+2025-08-09T09:31:55.593Z - ERROR - Ошибка подключения к MongoDB: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:31:55.594Z - ERROR - Ошибка при запуске планировщика: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:32:04.252Z - INFO - Попытка подключения к MongoDB с URI: undefined
+2025-08-09T09:32:04.255Z - INFO - Бот запущен
+2025-08-09T09:32:04.257Z - ERROR - Ошибка подключения к MongoDB: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:32:04.258Z - ERROR - Ошибка при запуске планировщика: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+2025-08-09T09:32:29.419Z - INFO - Бот запущен
+2025-08-09T09:32:29.486Z - INFO - Запуск планировщика для chat_id: 1364079703 с интервалом: */15 * * * *
+2025-08-09T09:32:29.520Z - INFO - Запуск планировщика для chat_id: 6825148174 с интервалом: */15 * * * *
+2025-08-09T09:32:50.522Z - INFO - Команда /start, chat_id: 1364079703
+2025-08-09T09:33:00.515Z - INFO - Запрос к card API: https://basket-01.wbbasket.ru/vol363/part36345/36345264/info/ru/card.json
+2025-08-09T09:33:01.554Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-01.wbbasket.ru/vol363/part36345/36345264/info/ru/card.json
+2025-08-09T09:33:01.555Z - INFO - Запрос к card API: https://basket-02.wbbasket.ru/vol363/part36345/36345264/info/ru/card.json
+2025-08-09T09:33:02.671Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-02.wbbasket.ru/vol363/part36345/36345264/info/ru/card.json
+2025-08-09T09:33:02.672Z - INFO - Запрос к card API: https://basket-03.wbbasket.ru/vol363/part36345/36345264/info/ru/card.json
+2025-08-09T09:33:03.670Z - INFO - Данные успешно сохранены в host_cache.json
+2025-08-09T09:33:03.867Z - INFO - Изображение доступно: https://basket-03.wbbasket.ru/vol363/part36345/36345264/images/big/1.webp
+2025-08-09T09:33:03.868Z - INFO - Запрос к price API: https://basket-03.wbbasket.ru/vol363/part36345/36345264/info/price-history.json
+2025-08-09T09:33:04.034Z - INFO - Запрос к wb_card API: https://card.wb.ru/cards/v4/detail?appType=1&curr=rub&dest=123585822&spp=30&hide_dtype=13&ab_testid=no_reranking&lang=ru&nm=36345264
+2025-08-09T09:33:04.551Z - INFO - Успешно получены данные для 36345264, imageUrl: https://basket-03.wbbasket.ru/vol363/part36345/36345264/images/big/1.webp
+2025-08-09T09:33:04.553Z - INFO - Данные успешно сохранены в wb_products.json
+2025-08-09T09:33:04.554Z - INFO - Отправка сообщения, imageUrl: https://basket-03.wbbasket.ru/vol363/part36345/36345264/images/big/1.webp
+2025-08-09T09:33:19.842Z - INFO - Список товаров пуст, chat_id: 6825148174
+2025-08-09T09:33:30.671Z - INFO - Запрос к card API: https://basket-01.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:31.657Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-01.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:31.658Z - INFO - Запрос к card API: https://basket-02.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:32.611Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-02.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:32.612Z - INFO - Запрос к card API: https://basket-03.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:33.575Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-03.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:33.575Z - INFO - Запрос к card API: https://basket-04.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:34.463Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-04.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:34.464Z - INFO - Запрос к card API: https://basket-05.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:35.363Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-05.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:35.364Z - INFO - Запрос к card API: https://basket-06.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:35.672Z - INFO - Отправка сообщения ожидания для 242654056
+2025-08-09T09:33:36.188Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-06.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:36.189Z - INFO - Запрос к card API: https://basket-07.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:37.089Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-07.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:37.090Z - INFO - Запрос к card API: https://basket-08.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:37.995Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-08.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:37.995Z - INFO - Запрос к card API: https://basket-09.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:38.871Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-09.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:38.872Z - INFO - Запрос к card API: https://basket-10.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:39.776Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-10.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:39.777Z - INFO - Запрос к card API: https://basket-11.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:40.667Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-11.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:40.668Z - INFO - Запрос к card API: https://basket-12.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:41.502Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-12.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:41.502Z - INFO - Запрос к card API: https://basket-13.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:42.399Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-13.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:42.400Z - INFO - Запрос к card API: https://basket-14.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:43.217Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-14.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:43.218Z - INFO - Запрос к card API: https://basket-15.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:44.117Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-15.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:44.117Z - INFO - Запрос к card API: https://basket-16.wbbasket.ru/vol2426/part242654/242654056/info/ru/card.json
+2025-08-09T09:33:44.897Z - INFO - Данные успешно сохранены в host_cache.json
+2025-08-09T09:33:45.093Z - INFO - Изображение доступно: https://basket-16.wbbasket.ru/vol2426/part242654/242654056/images/big/1.webp
+2025-08-09T09:33:45.093Z - INFO - Запрос к price API: https://basket-16.wbbasket.ru/vol2426/part242654/242654056/info/price-history.json
+2025-08-09T09:33:45.256Z - INFO - Запрос к wb_card API: https://card.wb.ru/cards/v4/detail?appType=1&curr=rub&dest=123585822&spp=30&hide_dtype=13&ab_testid=no_reranking&lang=ru&nm=242654056
+2025-08-09T09:33:45.782Z - INFO - Успешно получены данные для 242654056, imageUrl: https://basket-16.wbbasket.ru/vol2426/part242654/242654056/images/big/1.webp
+2025-08-09T09:33:45.785Z - INFO - Данные успешно сохранены в wb_products.json
+2025-08-09T09:33:45.785Z - INFO - Отправка сообщения, imageUrl: https://basket-16.wbbasket.ru/vol2426/part242654/242654056/images/big/1.webp
+2025-08-09T09:34:15.302Z - INFO - Callback_query: interval_15, chat_id: 6825148174
+2025-08-09T09:34:15.508Z - INFO - Данные успешно сохранены в wb_products.json
+2025-08-09T09:34:44.930Z - INFO - Callback_query: interval_15, chat_id: 1364079703
+2025-08-09T09:34:45.155Z - INFO - Данные успешно сохранены в wb_products.json
+2025-08-09T09:35:10.676Z - INFO - Бот запущен
+2025-08-09T09:35:10.763Z - INFO - Запуск планировщика для chat_id: 1364079703 с интервалом: */15 * * * *
+2025-08-09T09:35:10.791Z - INFO - Запуск планировщика для chat_id: 6825148174 с интервалом: */15 * * * *
