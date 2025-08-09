@@ -1,8 +1,8 @@
-const { showMainMenu } = require('../utils/telegramUtils');
+const { showMainMenu, showNotificationMenu } = require('../utils/telegramUtils');
 const { addProduct, removeProduct, listProducts, checkPrices } = require('../services/botService');
 const { bot, userStates } = require('./messageHandlers');
 const logger = require('../utils/logger');
-const { loadJson } = require('../utils/fileUtils');
+const { loadJson, saveJson } = require('../utils/fileUtils');
 const { JSON_FILE } = require('../config/config');
 
 /**
@@ -26,13 +26,13 @@ function setupCallbackHandlers() {
             await bot.sendMessage(chatId, 'ℹ️ Введите артикул товара:', { parse_mode: 'HTML' });
         } else if (callbackData === 'remove_product') {
             const data = await loadJson(JSON_FILE);
-            if (!Object.keys(data.products).length) {
+            if (!data.users[chatId] || !Object.keys(data.users[chatId].products).length) {
                 await bot.sendMessage(chatId, '📭 Список отслеживаемых товаров пуст.', { parse_mode: 'HTML' });
                 await showMainMenu(bot, chatId);
                 return;
             }
             const keyboard = {
-                inline_keyboard: Object.entries(data.products).map(([article, product]) => [
+                inline_keyboard: Object.entries(data.users[chatId].products).map(([article, product]) => [
                     { text: `${product.name} (арт. ${article})`, callback_data: `remove_${article}` },
                 ]),
             };
@@ -47,6 +47,26 @@ function setupCallbackHandlers() {
         } else if (callbackData.startsWith('remove_')) {
             const article = callbackData.split('_')[1];
             await removeProduct(bot, chatId, article);
+        } else if (callbackData.startsWith('interval_')) {
+            const intervalMinutes = parseInt(callbackData.split('_')[1]);
+            const intervals = {
+                5: '*/5 * * * *',
+                15: '*/15 * * * *',
+                30: '*/30 * * * *',
+                60: '0 * * * *',
+                120: '0 */2 * * *',
+            };
+            const cronExpression = intervals[intervalMinutes];
+            if (cronExpression) {
+                const data = await loadJson(JSON_FILE);
+                data.users[chatId] = data.users[chatId] || { products: {}, notificationInterval: null };
+                data.users[chatId].notificationInterval = cronExpression;
+                await saveJson(JSON_FILE, data);
+                await bot.sendMessage(chatId, `⏰ Интервал уведомлений установлен: каждые ${intervalMinutes} минут`, { parse_mode: 'HTML' });
+                await showMainMenu(bot, chatId);
+            }
+        } else if (callbackData === 'main_menu') {
+            await showMainMenu(bot, chatId);
         }
 
         await bot.answerCallbackQuery(query.id);

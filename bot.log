@@ -2863,3 +2863,200 @@
 2025-08-09T07:02:17.297Z - INFO - Успешно получены данные для 400654457, imageUrl: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/images/big/1.webp
 2025-08-09T07:02:22.850Z - INFO - Callback_query: remove_260606846, chat_id: 1364079703
 2025-08-09T07:02:23.003Z - INFO - Данные успешно сохранены в wb_products.json
+2025-08-09T07:02:54.142Z - INFO - Отправка списка товаров, chat_id: 1364079703
+2025-08-09T07:02:54.143Z - INFO - Отправка сообщения, imageUrl: https://basket-01.wbbasket.ru/vol42/part4219/4219394/images/big/1.webp
+2025-08-09T07:02:54.312Z - INFO - Отправка сообщения, imageUrl: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/images/big/1.webp
+2025-08-09T08:15:26.014Z - INFO - Бот запущен
+2025-08-09T08:15:26.125Z - INFO - Запуск планировщика с интервалом: */5 * * * *
+2025-08-09T08:15:29.241Z - INFO - Команда /start, chat_id: 1364079703
+2025-08-09T08:15:37.216Z - INFO - Callback_query: interval_15, chat_id: 1364079703
+2025-08-09T08:15:37.432Z - INFO - Данные успешно сохранены в wb_products.json
+2025-08-09T08:15:56.480Z - INFO - Проверка товара 4219394
+2025-08-09T08:15:56.483Z - INFO - Запрос к card API: https://basket-01.wbbasket.ru/vol42/part4219/4219394/info/ru/card.json
+2025-08-09T08:15:57.241Z - INFO - Данные успешно сохранены в host_cache.json
+2025-08-09T08:15:57.375Z - INFO - Изображение доступно: https://basket-01.wbbasket.ru/vol42/part4219/4219394/images/big/1.webp
+2025-08-09T08:15:57.376Z - INFO - Запрос к price API: https://basket-01.wbbasket.ru/vol42/part4219/4219394/info/price-history.json
+2025-08-09T08:15:57.510Z - INFO - Запрос к wb_card API: https://card.wb.ru/cards/v4/detail?appType=1&curr=rub&dest=123585822&spp=30&hide_dtype=13&ab_testid=no_reranking&lang=ru&nm=4219394
+2025-08-09T08:15:58.029Z - INFO - Успешно получены данные для 4219394, imageUrl: https://basket-01.wbbasket.ru/vol42/part4219/4219394/images/big/1.webp
+2025-08-09T08:15:58.030Z - INFO - Проверка товара 400654457
+2025-08-09T08:15:58.032Z - INFO - Запрос к card API: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T08:15:58.678Z - INFO - Данные успешно сохранены в host_cache.json
+2025-08-09T08:15:58.820Z - INFO - Изображение доступно: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/images/big/1.webp
+2025-08-09T08:15:58.820Z - INFO - Запрос к price API: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/info/price-history.json
+2025-08-09T08:15:59.018Z - INFO - Запрос к wb_card API: https://card.wb.ru/cards/v4/detail?appType=1&curr=rub&dest=123585822&spp=30&hide_dtype=13&ab_testid=no_reranking&lang=ru&nm=400654457
+2025-08-09T08:15:59.161Z - INFO - Успешно получены данные для 400654457, imageUrl: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/images/big/1.webp
+2025-08-09T08:16:02.317Z - INFO - Отправка списка товаров, chat_id: 1364079703
+2025-08-09T08:16:02.318Z - INFO - Отправка сообщения, imageUrl: https://basket-01.wbbasket.ru/vol42/part4219/4219394/images/big/1.webp
+2025-08-09T08:16:02.535Z - INFO - Отправка сообщения, imageUrl: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/images/big/1.webp
+2025-08-09T08:16:48.306Z - INFO - Команда /start, chat_id: 6825148174
+2025-08-09T08:17:09.577Z - INFO - Запрос к card API: https://basket-01.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:10.260Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-01.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:10.261Z - INFO - Запрос к card API: https://basket-02.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:10.994Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-02.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:10.994Z - INFO - Запрос к card API: https://basket-03.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:11.710Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-03.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:11.711Z - INFO - Запрос к card API: https://basket-04.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:12.576Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-04.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:12.577Z - INFO - Запрос к card API: https://basket-05.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:13.412Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-05.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:13.413Z - INFO - Запрос к card API: https://basket-06.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:14.250Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-06.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:14.251Z - INFO - Запрос к card API: https://basket-07.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:14.589Z - INFO - Отправка сообщения ожидания для 218849148
+2025-08-09T08:17:15.066Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-07.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:15.067Z - INFO - Запрос к card API: https://basket-08.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:15.870Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-08.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:15.871Z - INFO - Запрос к card API: https://basket-09.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:16.686Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-09.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:16.687Z - INFO - Запрос к card API: https://basket-10.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:17.402Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-10.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:17.403Z - INFO - Запрос к card API: https://basket-11.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:18.113Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-11.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:18.114Z - INFO - Запрос к card API: https://basket-12.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:18.803Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-12.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:18.804Z - INFO - Запрос к card API: https://basket-13.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:19.615Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-13.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:19.616Z - INFO - Запрос к card API: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:17:20.277Z - INFO - Данные успешно сохранены в host_cache.json
+2025-08-09T08:17:20.421Z - INFO - Изображение доступно: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/images/big/1.webp
+2025-08-09T08:17:20.422Z - INFO - Запрос к price API: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/info/price-history.json
+2025-08-09T08:17:20.552Z - INFO - Запрос к wb_card API: https://card.wb.ru/cards/v4/detail?appType=1&curr=rub&dest=123585822&spp=30&hide_dtype=13&ab_testid=no_reranking&lang=ru&nm=218849148
+2025-08-09T08:17:20.955Z - INFO - Успешно получены данные для 218849148, imageUrl: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/images/big/1.webp
+2025-08-09T08:17:20.957Z - INFO - Данные успешно сохранены в wb_products.json
+2025-08-09T08:17:20.957Z - INFO - Отправка сообщения, imageUrl: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/images/big/1.webp
+2025-08-09T08:17:30.923Z - INFO - Callback_query: interval_15, chat_id: 6825148174
+2025-08-09T08:17:31.087Z - INFO - Данные успешно сохранены в wb_products.json
+2025-08-09T08:17:51.199Z - INFO - Отправка списка товаров, chat_id: 1364079703
+2025-08-09T08:17:51.200Z - INFO - Отправка сообщения, imageUrl: https://basket-01.wbbasket.ru/vol42/part4219/4219394/images/big/1.webp
+2025-08-09T08:17:51.385Z - INFO - Отправка сообщения, imageUrl: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/images/big/1.webp
+2025-08-09T08:17:51.559Z - INFO - Отправка сообщения, imageUrl: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/images/big/1.webp
+2025-08-09T08:20:00.029Z - INFO - Запуск автоматической проверки цен
+2025-08-09T08:20:00.031Z - INFO - Проверка товара 4219394
+2025-08-09T08:20:00.033Z - INFO - Запрос к card API: https://basket-01.wbbasket.ru/vol42/part4219/4219394/info/ru/card.json
+2025-08-09T08:20:00.656Z - INFO - Данные успешно сохранены в host_cache.json
+2025-08-09T08:20:00.792Z - INFO - Изображение доступно: https://basket-01.wbbasket.ru/vol42/part4219/4219394/images/big/1.webp
+2025-08-09T08:20:00.793Z - INFO - Запрос к price API: https://basket-01.wbbasket.ru/vol42/part4219/4219394/info/price-history.json
+2025-08-09T08:20:00.924Z - INFO - Запрос к wb_card API: https://card.wb.ru/cards/v4/detail?appType=1&curr=rub&dest=123585822&spp=30&hide_dtype=13&ab_testid=no_reranking&lang=ru&nm=4219394
+2025-08-09T08:20:01.306Z - INFO - Успешно получены данные для 4219394, imageUrl: https://basket-01.wbbasket.ru/vol42/part4219/4219394/images/big/1.webp
+2025-08-09T08:20:01.307Z - INFO - Проверка товара 218849148
+2025-08-09T08:20:01.308Z - INFO - Запрос к card API: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/info/ru/card.json
+2025-08-09T08:20:02.078Z - INFO - Данные успешно сохранены в host_cache.json
+2025-08-09T08:20:02.230Z - INFO - Изображение доступно: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/images/big/1.webp
+2025-08-09T08:20:02.231Z - INFO - Запрос к price API: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/info/price-history.json
+2025-08-09T08:20:02.366Z - INFO - Запрос к wb_card API: https://card.wb.ru/cards/v4/detail?appType=1&curr=rub&dest=123585822&spp=30&hide_dtype=13&ab_testid=no_reranking&lang=ru&nm=218849148
+2025-08-09T08:20:02.508Z - INFO - Успешно получены данные для 218849148, imageUrl: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/images/big/1.webp
+2025-08-09T08:20:02.509Z - INFO - Проверка товара 400654457
+2025-08-09T08:20:02.510Z - INFO - Запрос к card API: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/info/ru/card.json
+2025-08-09T08:20:03.287Z - INFO - Данные успешно сохранены в host_cache.json
+2025-08-09T08:20:03.412Z - INFO - Изображение доступно: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/images/big/1.webp
+2025-08-09T08:20:03.413Z - INFO - Запрос к price API: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/info/price-history.json
+2025-08-09T08:20:03.545Z - INFO - Запрос к wb_card API: https://card.wb.ru/cards/v4/detail?appType=1&curr=rub&dest=123585822&spp=30&hide_dtype=13&ab_testid=no_reranking&lang=ru&nm=400654457
+2025-08-09T08:20:03.679Z - INFO - Успешно получены данные для 400654457, imageUrl: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/images/big/1.webp
+2025-08-09T08:20:03.683Z - INFO - Данные успешно сохранены в wb_products.json
+2025-08-09T08:20:03.685Z - INFO - Отправка сообщения, imageUrl: https://basket-01.wbbasket.ru/vol42/part4219/4219394/images/big/1.webp
+2025-08-09T08:20:03.865Z - INFO - Отправка сообщения, imageUrl: https://basket-14.wbbasket.ru/vol2188/part218849/218849148/images/big/1.webp
+2025-08-09T08:20:04.061Z - INFO - Отправка сообщения, imageUrl: https://basket-23.wbbasket.ru/vol4006/part400654/400654457/images/big/1.webp
+2025-08-09T08:20:33.853Z - INFO - Бот запущен
+2025-08-09T08:20:33.934Z - INFO - Запуск планировщика с интервалом: */5 * * * *
+2025-08-09T08:21:10.978Z - INFO - Бот запущен
+2025-08-09T08:21:11.052Z - INFO - Запуск планировщика с интервалом: */5 * * * *
+2025-08-09T08:21:25.620Z - INFO - Бот запущен
+2025-08-09T08:21:44.732Z - INFO - Бот запущен
+2025-08-09T08:21:57.915Z - INFO - Бот запущен
+2025-08-09T08:22:24.227Z - INFO - Список товаров пуст, chat_id: 6825148174
+2025-08-09T08:22:29.638Z - INFO - Список товаров пуст, chat_id: 1364079703
+2025-08-09T08:22:42.544Z - INFO - Запрос к card API: https://basket-01.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:43.378Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-01.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:43.379Z - INFO - Запрос к card API: https://basket-02.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:44.076Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-02.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:44.077Z - INFO - Запрос к card API: https://basket-03.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:44.752Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-03.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:44.754Z - INFO - Запрос к card API: https://basket-04.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:45.525Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-04.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:45.526Z - INFO - Запрос к card API: https://basket-05.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:46.201Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-05.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:46.202Z - INFO - Запрос к card API: https://basket-06.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:46.885Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-06.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:46.886Z - INFO - Запрос к card API: https://basket-07.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:47.545Z - INFO - Отправка сообщения ожидания для 451074189
+2025-08-09T08:22:47.577Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-07.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:47.580Z - INFO - Запрос к card API: https://basket-08.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:48.253Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-08.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:48.254Z - INFO - Запрос к card API: https://basket-09.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:48.956Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-09.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:48.957Z - INFO - Запрос к card API: https://basket-10.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:49.650Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-10.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:49.650Z - INFO - Запрос к card API: https://basket-11.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:50.463Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-11.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:50.463Z - INFO - Запрос к card API: https://basket-12.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:51.279Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-12.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:51.279Z - INFO - Запрос к card API: https://basket-13.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:51.943Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-13.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:51.944Z - INFO - Запрос к card API: https://basket-14.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:52.624Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-14.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:52.625Z - INFO - Запрос к card API: https://basket-15.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:53.415Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-15.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:53.416Z - INFO - Запрос к card API: https://basket-16.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:54.084Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-16.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:54.085Z - INFO - Запрос к card API: https://basket-17.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:54.812Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-17.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:54.812Z - INFO - Запрос к card API: https://basket-18.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:55.495Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-18.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:55.496Z - INFO - Запрос к card API: https://basket-19.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:56.152Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-19.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:56.153Z - INFO - Запрос к card API: https://basket-20.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:56.942Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-20.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:56.942Z - INFO - Запрос к card API: https://basket-21.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:57.761Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-21.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:57.762Z - INFO - Запрос к card API: https://basket-22.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:58.563Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-22.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:58.563Z - INFO - Запрос к card API: https://basket-23.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:59.243Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-23.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:22:59.244Z - INFO - Запрос к card API: https://basket-24.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:23:00.036Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-24.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:23:00.037Z - INFO - Запрос к card API: https://basket-25.wbbasket.ru/vol4510/part451074/451074189/info/ru/card.json
+2025-08-09T08:23:00.671Z - INFO - Данные успешно сохранены в host_cache.json
+2025-08-09T08:23:00.808Z - INFO - Изображение доступно: https://basket-25.wbbasket.ru/vol4510/part451074/451074189/images/big/1.webp
+2025-08-09T08:23:00.809Z - INFO - Запрос к price API: https://basket-25.wbbasket.ru/vol4510/part451074/451074189/info/price-history.json
+2025-08-09T08:23:00.941Z - INFO - Запрос к wb_card API: https://card.wb.ru/cards/v4/detail?appType=1&curr=rub&dest=123585822&spp=30&hide_dtype=13&ab_testid=no_reranking&lang=ru&nm=451074189
+2025-08-09T08:23:01.444Z - INFO - Успешно получены данные для 451074189, imageUrl: https://basket-25.wbbasket.ru/vol4510/part451074/451074189/images/big/1.webp
+2025-08-09T08:23:01.446Z - INFO - Данные успешно сохранены в wb_products.json
+2025-08-09T08:23:01.447Z - INFO - Отправка сообщения, imageUrl: https://basket-25.wbbasket.ru/vol4510/part451074/451074189/images/big/1.webp
+2025-08-09T08:23:21.993Z - INFO - Callback_query: interval_15, chat_id: 1364079703
+2025-08-09T08:23:22.145Z - INFO - Данные успешно сохранены в wb_products.json
+2025-08-09T08:23:35.606Z - INFO - Список товаров пуст, chat_id: 6825148174
+2025-08-09T08:24:19.983Z - INFO - Запрос к card API: https://basket-01.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:20.666Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-01.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:20.667Z - INFO - Запрос к card API: https://basket-02.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:21.354Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-02.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:21.355Z - INFO - Запрос к card API: https://basket-03.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:22.133Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-03.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:22.134Z - INFO - Запрос к card API: https://basket-04.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:22.796Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-04.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:22.797Z - INFO - Запрос к card API: https://basket-05.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:23.583Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-05.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:23.584Z - INFO - Запрос к card API: https://basket-06.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:24.287Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-06.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:24.288Z - INFO - Запрос к card API: https://basket-07.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:24.976Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-07.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:24.977Z - INFO - Запрос к card API: https://basket-08.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:24.992Z - INFO - Отправка сообщения ожидания для 198067490
+2025-08-09T08:24:25.631Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-08.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:25.631Z - INFO - Запрос к card API: https://basket-09.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:26.301Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-09.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:26.302Z - INFO - Запрос к card API: https://basket-10.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:26.970Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-10.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:26.971Z - INFO - Запрос к card API: https://basket-11.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:27.692Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-11.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:27.693Z - INFO - Запрос к card API: https://basket-12.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:28.392Z - WARN - Ошибка card API: Request failed with status code 404, URL: https://basket-12.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:28.393Z - INFO - Запрос к card API: https://basket-13.wbbasket.ru/vol1980/part198067/198067490/info/ru/card.json
+2025-08-09T08:24:29.025Z - INFO - Данные успешно сохранены в host_cache.json
+2025-08-09T08:24:29.152Z - INFO - Изображение доступно: https://basket-13.wbbasket.ru/vol1980/part198067/198067490/images/big/1.webp
+2025-08-09T08:24:29.152Z - INFO - Запрос к price API: https://basket-13.wbbasket.ru/vol1980/part198067/198067490/info/price-history.json
+2025-08-09T08:24:29.281Z - INFO - Запрос к wb_card API: https://card.wb.ru/cards/v4/detail?appType=1&curr=rub&dest=123585822&spp=30&hide_dtype=13&ab_testid=no_reranking&lang=ru&nm=198067490
+2025-08-09T08:24:29.682Z - INFO - Успешно получены данные для 198067490, imageUrl: https://basket-13.wbbasket.ru/vol1980/part198067/198067490/images/big/1.webp
+2025-08-09T08:24:29.684Z - INFO - Данные успешно сохранены в wb_products.json
+2025-08-09T08:24:29.684Z - INFO - Отправка сообщения, imageUrl: https://basket-13.wbbasket.ru/vol1980/part198067/198067490/images/big/1.webp
+2025-08-09T08:24:38.190Z - INFO - Callback_query: interval_15, chat_id: 6825148174
+2025-08-09T08:24:38.388Z - INFO - Данные успешно сохранены в wb_products.json

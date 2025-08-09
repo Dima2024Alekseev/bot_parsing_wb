@@ -1,5 +1,5 @@
 const TelegramBot = require('node-telegram-bot-api');
-const { showMainMenu } = require('../utils/telegramUtils');
+const { showMainMenu, showNotificationMenu } = require('../utils/telegramUtils');
 const { addProduct, removeProduct, listProducts, checkPrices } = require('../services/botService');
 const logger = require('../utils/logger');
 const { TELEGRAM_BOT_TOKEN } = require('../config/config');
@@ -51,13 +51,13 @@ function setupMessageHandlers() {
         if (!match[1]) {
             logger.info(`Команда /remove без артикула, chat_id: ${chatId}`);
             const data = await require('../utils/fileUtils').loadJson(require('../config/config').JSON_FILE);
-            if (!Object.keys(data.products).length) {
+            if (!data.users[chatId] || !Object.keys(data.users[chatId].products).length) {
                 await bot.sendMessage(chatId, '📭 Список отслеживаемых товаров пуст.', { parse_mode: 'HTML' });
                 await showMainMenu(bot, chatId);
                 return;
             }
             const keyboard = {
-                inline_keyboard: Object.entries(data.products).map(([article, product]) => [
+                inline_keyboard: Object.entries(data.users[chatId].products).map(([article, product]) => [
                     { text: `${product.name} (арт. ${article})`, callback_data: `remove_${article}` },
                 ]),
             };
@@ -113,13 +113,13 @@ function setupMessageHandlers() {
                 break;
             case '❌ Удалить товар':
                 const data = await require('../utils/fileUtils').loadJson(require('../config/config').JSON_FILE);
-                if (!Object.keys(data.products).length) {
+                if (!data.users[chatId] || !Object.keys(data.users[chatId].products).length) {
                     await bot.sendMessage(chatId, '📭 Список отслеживаемых товаров пуст.', { parse_mode: 'HTML' });
                     await showMainMenu(bot, chatId);
                     return;
                 }
                 const keyboard = {
-                    inline_keyboard: Object.entries(data.products).map(([article, product]) => [
+                    inline_keyboard: Object.entries(data.users[chatId].products).map(([article, product]) => [
                         { text: `${product.name} (арт. ${article})`, callback_data: `remove_${article}` },
                     ]),
                 };
@@ -130,6 +130,9 @@ function setupMessageHandlers() {
                 break;
             case '🔍 Проверить цены':
                 await checkPrices(bot, chatId);
+                break;
+            case '⏰ Настроить уведомления':
+                await showNotificationMenu(bot, chatId);
                 break;
             default:
                 await showMainMenu(bot, chatId); // Возвращаем меню при неизвестном сообщении

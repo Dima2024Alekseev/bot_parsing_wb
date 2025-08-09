@@ -12,7 +12,9 @@ const { JSON_FILE } = require('../config/config');
  */
 async function addProduct(bot, chatId, article) {
     const data = await loadJson(JSON_FILE);
-    if (data.products[article]) {
+    data.users[chatId] = data.users[chatId] || { products: {}, notificationInterval: null };
+    
+    if (data.users[chatId].products[article]) {
         logger.info(`Товар ${article} уже отслеживается, chat_id: ${chatId}`);
         await bot.sendMessage(chatId, `ℹ️ Товар ${article} уже отслеживается!`, { parse_mode: 'HTML' });
         await showMainMenu(bot, chatId);
@@ -47,7 +49,7 @@ async function addProduct(bot, chatId, article) {
             return;
         }
 
-        data.products[article] = {
+        data.users[chatId].products[article] = {
             name: productInfo.name,
             brand: productInfo.brand,
             current_price: productInfo.price,
@@ -91,15 +93,18 @@ async function addProduct(bot, chatId, article) {
  */
 async function removeProduct(bot, chatId, article) {
     const data = await loadJson(JSON_FILE);
-    if (!data.products[article]) {
+    if (!data.users[chatId] || !data.users[chatId].products[article]) {
         logger.info(`Товар ${article} не найден, chat_id: ${chatId}`);
         await bot.sendMessage(chatId, `ℹ️ Товар ${article} не найден в списке отслеживаемых.`, { parse_mode: 'HTML' });
         await showMainMenu(bot, chatId);
         return;
     }
 
-    const productName = data.products[article].name;
-    delete data.products[article];
+    const productName = data.users[chatId].products[article].name;
+    delete data.users[chatId].products[article];
+    if (!Object.keys(data.users[chatId].products).length) {
+        delete data.users[chatId]; // Удаляем пользователя, если у него больше нет товаров
+    }
     await saveJson(JSON_FILE, data);
     await bot.sendMessage(chatId, `🗑 Товар удалён: ${productName} (арт. ${article})`, { parse_mode: 'HTML' });
     await showMainMenu(bot, chatId);
@@ -112,7 +117,7 @@ async function removeProduct(bot, chatId, article) {
  */
 async function listProducts(bot, chatId) {
     const data = await loadJson(JSON_FILE);
-    if (!Object.keys(data.products).length) {
+    if (!data.users[chatId] || !Object.keys(data.users[chatId].products).length) {
         logger.info(`Список товаров пуст, chat_id: ${chatId}`);
         await bot.sendMessage(chatId, '📭 Список отслеживаемых товаров пуст.', { parse_mode: 'HTML' });
         await showMainMenu(bot, chatId);
@@ -120,7 +125,7 @@ async function listProducts(bot, chatId) {
     }
 
     logger.info(`Отправка списка товаров, chat_id: ${chatId}`);
-    for (const [article, product] of Object.entries(data.products)) {
+    for (const [article, product] of Object.entries(data.users[chatId].products)) {
         const caption = `
 🔹 <b>${product.name}</b>
 
@@ -145,7 +150,7 @@ async function listProducts(bot, chatId) {
  */
 async function checkPrices(bot, chatId, isAuto = false) {
     const data = await loadJson(JSON_FILE);
-    if (!Object.keys(data.products).length) {
+    if (!data.users[chatId] || !Object.keys(data.users[chatId].products).length) {
         logger.info(`Нет товаров для проверки, chat_id: ${chatId}`);
         await bot.sendMessage(chatId, 'ℹ️ Нет товаров для проверки.', { parse_mode: 'HTML' });
         if (!isAuto) await showMainMenu(bot, chatId);
@@ -159,7 +164,7 @@ async function checkPrices(bot, chatId, isAuto = false) {
     let updated = 0;
     const changes = [];
 
-    for (const [article, product] of Object.entries(data.products)) {
+    for (const [article, product] of Object.entries(data.users[chatId].products)) {
         logger.info(`Проверка товара ${article}`);
         const productInfo = await getWbProductInfo(article);
         if (!productInfo.success) {
@@ -180,9 +185,9 @@ async function checkPrices(bot, chatId, isAuto = false) {
         const newPrice = productInfo.price;
 
         if (newPrice !== oldPrice) {
-            data.products[article].current_price = newPrice;
-            data.products[article].imageUrl = productInfo.imageUrl;
-            data.products[article].history.push({
+            data.users[chatId].products[article].current_price = newPrice;
+            data.users[chatId].products[article].imageUrl = productInfo.imageUrl;
+            data.users[chatId].products[article].history.push({
                 date: new Date().toISOString().slice(0, 19).replace('T', ' '),
                 price: newPrice,
             });
