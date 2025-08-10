@@ -6,7 +6,7 @@ const { JSON_FILE } = require('../config/config');
 const moment = require('moment-timezone');
 const { schedulePriceChecks } = require('../utils/scheduler');
 
-// Объект для хранения времени последней команды для защиты от спама
+// Объект для хранения времени последней команды (оставлен на случай, если потребуется для других функций)
 const lastCommandTime = {};
 
 /**
@@ -23,15 +23,6 @@ async function addProduct(bot, chatId, article) {
         await showMainMenu(bot, chatId);
         return;
     }
-
-    // Защита от спама
-    const now = Date.now();
-    if (lastCommandTime[chatId]?.add && now - lastCommandTime[chatId].add < 60 * 1000) {
-        logger.info(`Спам-команда /add от chat_id: ${chatId}`);
-        await bot.sendMessage(chatId, '⏳ Пожалуйста, подождите минуту перед добавлением нового товара.', { parse_mode: 'HTML' });
-        return;
-    }
-    lastCommandTime[chatId] = { ...lastCommandTime[chatId], add: now };
 
     const data = await loadJson(JSON_FILE);
     data.users[chatId] = data.users[chatId] || { products: {}, notificationInterval: null };
@@ -138,38 +129,37 @@ async function addProduct(bot, chatId, article) {
  * @param {string} article - Артикул товара.
  */
 async function removeProduct(bot, chatId, article) {
-    // Защита от спама
-    const now = Date.now();
-    if (lastCommandTime[chatId]?.remove && now - lastCommandTime[chatId].remove < 60 * 1000) {
-        logger.info(`Спам-команда /remove от chat_id: ${chatId}`);
-        await bot.sendMessage(chatId, '⏳ Пожалуйста, подождите минуту перед удалением следующего товара.', { parse_mode: 'HTML' });
-        return;
-    }
-    lastCommandTime[chatId] = { ...lastCommandTime[chatId], remove: now };
+    logger.info(`Попытка удаления товара ${article} для chat_id: ${chatId}`);
 
-    const data = await loadJson(JSON_FILE);
-    if (!data.users[chatId] || !data.users[chatId].products[article]) {
-        logger.info(`Товар ${article} не найден, chat_id: ${chatId}`);
-        await bot.sendMessage(chatId, `ℹ️ Товар ${article} не найден в списке отслеживаемых.`, { parse_mode: 'HTML' });
-        await showMainMenu(bot, chatId);
-        return;
-    }
-
-    const productName = data.users[chatId].products[article].name;
-    delete data.users[chatId].products[article];
-    if (!Object.keys(data.users[chatId].products).length) {
-        delete data.users[chatId];
-        try {
-            await schedulePriceChecks(bot, checkPrices);
-            logger.info(`Планировщик перезапущен после удаления всех товаров для chat_id: ${chatId}`);
-        } catch (error) {
-            logger.error(`Ошибка при перезапуске планировщика после удаления всех товаров для chat_id: ${chatId}: ${error.message}`);
+    try {
+        const data = await loadJson(JSON_FILE);
+        if (!data.users[chatId] || !data.users[chatId].products[article]) {
+            logger.info(`Товар ${article} не найден, chat_id: ${chatId}`);
+            await bot.sendMessage(chatId, `ℹ️ Товар ${article} не найден в списке отслеживаемых.`, { parse_mode: 'HTML' });
+            await showMainMenu(bot, chatId);
+            return;
         }
+
+        const productName = data.users[chatId].products[article].name;
+        delete data.users[chatId].products[article];
+        if (!Object.keys(data.users[chatId].products).length) {
+            delete data.users[chatId];
+            try {
+                await schedulePriceChecks(bot, checkPrices);
+                logger.info(`Планировщик перезапущен после удаления всех товаров для chat_id: ${chatId}`);
+            } catch (error) {
+                logger.error(`Ошибка при перезапуске планировщика после удаления всех товаров для chat_id: ${chatId}: ${error.message}`);
+            }
+        }
+        await saveJson(JSON_FILE, data);
+        await bot.sendMessage(chatId, `🗑️ Товар удалён: ${productName} (арт. ${article})`, { parse_mode: 'HTML' });
+        await showMainMenu(bot, chatId);
+        logger.info(`Товар ${article} успешно удалён для chat_id: ${chatId}`);
+    } catch (error) {
+        logger.error(`Ошибка при удалении товара ${article} для chat_id: ${chatId}: ${error.message}`);
+        await bot.sendMessage(chatId, `❌ Произошла ошибка при удалении товара ${article}. Попробуйте позже.`, { parse_mode: 'HTML' });
+        await showMainMenu(bot, chatId);
     }
-    await saveJson(JSON_FILE, data);
-    await bot.sendMessage(chatId, `🗑️ Товар удалён: ${productName} (арт. ${article})`, { parse_mode: 'HTML' });
-    await showMainMenu(bot, chatId);
-    logger.info(`Товар ${article} успешно удалён для chat_id: ${chatId}`);
 }
 
 /**
@@ -179,15 +169,6 @@ async function removeProduct(bot, chatId, article) {
  * @param {number} [page=1] - Номер текущей страницы.
  */
 async function listProducts(bot, chatId, page = 1) {
-    // Защита от спама
-    const now = Date.now();
-    if (lastCommandTime[chatId]?.list && now - lastCommandTime[chatId].list < 60 * 1000) {
-        logger.info(`Спам-команда /list от chat_id: ${chatId}`);
-        await bot.sendMessage(chatId, '⏳ Пожалуйста, подождите минуту перед просмотром списка товаров.', { parse_mode: 'HTML' });
-        return;
-    }
-    lastCommandTime[chatId] = { ...lastCommandTime[chatId], list: now };
-
     const data = await loadJson(JSON_FILE);
     if (!data.users[chatId] || !Object.keys(data.users[chatId].products).length) {
         logger.info(`Нет товаров для chat_id: ${chatId}`);
@@ -214,15 +195,6 @@ async function listProducts(bot, chatId, page = 1) {
  * @param {boolean} isAuto - Флаг автоматической проверки.
  */
 async function checkPrices(bot, chatId, isAuto = false) {
-    // Защита от спама
-    const now = Date.now();
-    if (lastCommandTime[chatId]?.check && now - lastCommandTime[chatId].check < 60 * 1000) {
-        logger.info(`Спам-команда /check от chat_id: ${chatId}`);
-        await bot.sendMessage(chatId, '⏳ Пожалуйста, подождите минуту перед следующей проверкой цен.', { parse_mode: 'HTML' });
-        return;
-    }
-    lastCommandTime[chatId] = { ...lastCommandTime[chatId], check: now };
-
     const data = await loadJson(JSON_FILE);
     if (!data.users[chatId] || !Object.keys(data.users[chatId].products).length) {
         if (!isAuto) {

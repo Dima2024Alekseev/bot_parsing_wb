@@ -14,11 +14,12 @@ function setupMessageHandlers() {
     // Команда /start
     bot.onText(/\/start/, async (msg) => {
         const chatId = msg.chat.id;
-        logger.info(`Команда /start, chat_id: ${chatId}`);
+        const userName = msg.from.first_name || (msg.from.username ? msg.from.username.replace(/^@/, '') : 'Пользователь');
+        logger.info(`Команда /start, chat_id: ${chatId}, user: ${userName}`);
         const helpText = `
 🛍️ <b>Бот для отслеживания цен на Wildberries</b>
 
-Ваш chat_id: ${chatId}
+Привет, ${userName}! 👋
 
 Выберите действие ниже:
 `;
