@@ -20,8 +20,6 @@ function setupMessageHandlers() {
 🛍️ <b>Бот для отслеживания цен на Wildberries</b>
 
 Привет, ${userName}! 👋
-
-Выберите действие ниже:
 `;
         await bot.sendMessage(chatId, helpText, { parse_mode: 'HTML' });
         await showMainMenu(bot, chatId);
