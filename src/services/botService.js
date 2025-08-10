@@ -6,7 +6,6 @@ const { JSON_FILE } = require('../config/config');
 const moment = require('moment-timezone');
 const { schedulePriceChecks } = require('../utils/scheduler');
 
-// Объект для хранения времени последней команды (оставлен на случай, если потребуется для других функций)
 const lastCommandTime = {};
 
 /**
@@ -16,7 +15,6 @@ const lastCommandTime = {};
  * @param {string} article - Артикул товара.
  */
 async function addProduct(bot, chatId, article) {
-    // Проверка формата артикула (7–9 цифр)
     if (!/^\d{7,9}$/.test(article)) {
         logger.info(`Некорректный артикул ${article} для chat_id: ${chatId}`);
         await bot.sendMessage(chatId, 'ℹ️ Артикул должен содержать от 7 до 9 цифр.', { parse_mode: 'HTML' });
@@ -27,7 +25,6 @@ async function addProduct(bot, chatId, article) {
     const data = await loadJson(JSON_FILE);
     data.users[chatId] = data.users[chatId] || { products: {}, notificationInterval: null };
 
-    // Проверка лимита товаров (максимум 50)
     if (Object.keys(data.users[chatId].products).length >= 50) {
         logger.info(`Достигнут лимит товаров для chat_id: ${chatId}`);
         await bot.sendMessage(chatId, '🚫 Достигнут лимит в 50 товаров. Удалите некоторые товары, чтобы добавить новые.', { parse_mode: 'HTML' });
@@ -52,8 +49,7 @@ async function addProduct(bot, chatId, article) {
         clearTimeout(waitTimeout);
 
         if (!productInfo.success) {
-            logger.warn(`Не удалось добавить товар ${article}: ${productInfo.message}, chat_id: ${chatId}`);
-            const errorMsg = `
+            let errorMsg = `
 ❌ Не удалось получить данные о товаре с артикулом ${article}.
 
 Проверьте артикул: <a href="https://www.wildberries.ru/catalog/${article}/detail.aspx">ссылка</a>
@@ -65,21 +61,25 @@ async function addProduct(bot, chatId, article) {
 
 Попробуйте позже или используйте VPN.
 `;
+            if (productInfo.message === 'Товар удалён или не существует') {
+                errorMsg = `❌ Товар с артикулом ${article} удалён продавцом на Wildberries и не может быть добавлен.`;
+            }
+            logger.warn(`Не удалось добавить товар ${article}: ${productInfo.message}, chat_id: ${chatId}`);
             await bot.sendMessage(chatId, errorMsg, { parse_mode: 'HTML' });
             await showMainMenu(bot, chatId);
             return;
         }
 
-        // Добавление предупреждений о низком рейтинге или отсутствии товара
         const currentTime = moment().tz('Asia/Bangkok').format('YYYY-MM-DD HH:mm:ss');
         data.users[chatId].products[article] = {
             name: productInfo.name,
             brand: productInfo.brand,
             current_price: productInfo.price,
+            quantity: productInfo.quantity, // Добавляем quantity
             rating: productInfo.rating,
             imageUrl: productInfo.imageUrl,
             added_date: currentTime,
-            history: [{ date: currentTime, price: productInfo.price }],
+            history: [{ date: currentTime, price: productInfo.price, quantity: productInfo.quantity }], // Добавляем quantity в историю
         };
         await saveJson(JSON_FILE, data);
 
@@ -94,13 +94,15 @@ async function addProduct(bot, chatId, article) {
 
 💰 Текущая цена: ${productInfo.priceWarning || productInfo.price + ' руб.'}
 
+📦 Количество на складе: ${productInfo.quantity} шт.
+
 🔗 <a href="https://www.wildberries.ru/catalog/${article}/detail.aspx">Ссылка</a>
 `;
         if (productInfo.rating < 3) {
             caption += '\n⚠️ Товар имеет низкий рейтинг!';
         }
-        if (productInfo.message === 'Товар отсутствует на складе') {
-            caption += '\n⚠️ Товар отсутствует на складе!';
+        if (productInfo.quantityWarning) {
+            caption += `\n⚠️ ${productInfo.quantityWarning}`;
         }
 
         await sendMessageWithPhoto(bot, chatId, caption, productInfo.imageUrl);
@@ -184,7 +186,47 @@ async function listProducts(bot, chatId, page = 1) {
     const endIndex = startIndex + productsPerPage;
     const currentProducts = products.slice(startIndex, endIndex);
 
-    await showPaginatedProducts(bot, chatId, currentProducts, page, totalPages);
+    for (const [article, product] of currentProducts) {
+        const caption = `
+🔹 <b>${product.name}</b>
+
+Артикул: <code>${article}</code>
+
+Цена: ${product.current_price} руб.
+
+Количество на складе: ${product.quantity} шт.
+
+Добавлен: ${product.added_date}
+
+<a href="https://www.wildberries.ru/catalog/${article}/detail.aspx">Открыть на WB</a>
+`;
+        if (product.quantity === 0) {
+            caption += '\n⚠️ Товар отсутствует на складе!';
+        }
+        await sendMessageWithPhoto(bot, chatId, caption, product.imageUrl);
+    }
+
+    const keyboard = {
+        inline_keyboard: [],
+    };
+
+    if (totalPages > 1) {
+        const navigationButtons = [];
+        if (page > 1) {
+            navigationButtons.push({ text: '⬅️ Предыдущая', callback_data: `page_prev_${page - 1}` });
+        }
+        if (page < totalPages) {
+            navigationButtons.push({ text: 'Следующая ➡️', callback_data: `page_next_${page + 1}` });
+        }
+        keyboard.inline_keyboard.push(navigationButtons);
+    }
+
+    keyboard.inline_keyboard.push([{ text: 'Вернуться в главное меню', callback_data: 'main_menu' }]);
+
+    await bot.sendMessage(chatId, `📄 Страница ${page} из ${totalPages}`, {
+        reply_markup: keyboard,
+        parse_mode: 'HTML',
+    });
     logger.info(`Список товаров показан для chat_id: ${chatId}, страница: ${page}`);
 }
 
@@ -227,7 +269,7 @@ async function checkPrices(bot, chatId, isAuto = false) {
         try {
             const productInfo = await getWbProductInfo(article);
             if (!productInfo.success) {
-                const caption = `
+                let caption = `
 ❌ <b>${product.name}</b>
 
 Артикул: <code>${article}</code>
@@ -236,34 +278,72 @@ async function checkPrices(bot, chatId, isAuto = false) {
 
 <a href="https://www.wildberries.ru/catalog/${article}/detail.aspx">Открыть</a>
 `;
+                if (productInfo.message === 'Товар удалён или не существует') {
+                    caption = `
+🗑️ <b>${product.name}</b> (арт. <code>${article}</code>) был удалён продавцом на Wildberries!
+
+Товар удалён из вашего списка отслеживания.
+
+<a href="https://www.wildberries.ru/catalog/${article}/detail.aspx">Проверить</a>
+`;
+                    delete data.users[chatId].products[article];
+                    await saveJson(JSON_FILE, data);
+                    if (!Object.keys(data.users[chatId].products).length) {
+                        delete data.users[chatId];
+                        await saveJson(JSON_FILE, data);
+                        try {
+                            await schedulePriceChecks(bot, checkPrices);
+                            logger.info(`Планировщик перезапущен после удаления всех товаров для chat_id: ${chatId}`);
+                        } catch (error) {
+                            logger.error(`Ошибка при перезапуске планировщика после удаления всех товаров для chat_id: ${chatId}: ${error.message}`);
+                        }
+                    }
+                }
                 changes.push({ caption, imageUrl: product.imageUrl });
                 continue;
             }
 
             const oldPrice = product.current_price;
+            const oldQuantity = product.quantity || 0; // Добавляем, учитываем старые данные без quantity
             const newPrice = productInfo.price;
+            const newQuantity = productInfo.quantity;
 
+            let changeMessage = '';
             if (newPrice !== oldPrice) {
+                changeMessage += `
+Старая цена: ${oldPrice} руб.
+Новая цена: ${newPrice} руб.
+Разница: ${(newPrice - oldPrice).toFixed(2)} руб.
+`;
+            }
+            if (newQuantity !== oldQuantity) {
+                changeMessage += `
+Старое количество: ${oldQuantity} шт.
+Новое количество: ${newQuantity} шт.
+Разница: ${newQuantity - oldQuantity} шт.
+`;
+            }
+
+            if (changeMessage) {
                 const currentTime = moment().tz('Asia/Bangkok').format('YYYY-MM-DD HH:mm:ss');
                 data.users[chatId].products[article].current_price = newPrice;
+                data.users[chatId].products[article].quantity = newQuantity;
                 data.users[chatId].products[article].imageUrl = productInfo.imageUrl;
                 data.users[chatId].products[article].history.push({
                     date: currentTime,
                     price: newPrice,
+                    quantity: newQuantity
                 });
                 const caption = `
 🔔 <b>${product.name}</b>
 
 Артикул: <code>${article}</code>
-
-Старая цена: ${oldPrice} руб.
-
-Новая цена: ${newPrice} руб.
-
-Разница: ${(newPrice - oldPrice).toFixed(2)} руб.
-
+${changeMessage}
 <a href="https://www.wildberries.ru/catalog/${article}/detail.aspx">Открыть</a>
 `;
+                if (productInfo.quantityWarning) {
+                    caption += `\n⚠️ ${productInfo.quantityWarning}`;
+                }
                 changes.push({ caption, imageUrl: productInfo.imageUrl });
                 updated++;
             } else if (isAuto) {
@@ -273,6 +353,8 @@ async function checkPrices(bot, chatId, isAuto = false) {
 Артикул: <code>${article}</code>
 
 Цена: ${newPrice} руб. (без изменений)
+
+Количество: ${newQuantity} шт. (без изменений)
 
 <a href="https://www.wildberries.ru/catalog/${article}/detail.aspx">Открыть</a>
 `;
@@ -285,7 +367,7 @@ async function checkPrices(bot, chatId, isAuto = false) {
 
 Артикул: <code>${article}</code>
 
-Ошибка: Не удалось проверить цену
+Ошибка: Не удалось проверить цену или количество
 
 <a href="https://www.wildberries.ru/catalog/${article}/detail.aspx">Открыть</a>
 `;
@@ -299,32 +381,32 @@ async function checkPrices(bot, chatId, isAuto = false) {
             try {
                 await sendMessageWithPhoto(bot, chatId, change.caption, change.imageUrl);
                 await new Promise(resolve => setTimeout(resolve, 300));
-                logger.info(`Сообщение об изменении цены отправлено для chat_id: ${chatId}, артикул: ${change.caption.match(/Артикул: <code>(\d+)<\/code>/)?.[1]}`);
+                logger.info(`Сообщение об изменении отправлено для chat_id: ${chatId}, артикул: ${change.caption.match(/Артикул: <code>(\d+)<\/code>/)?.[1]}`);
             } catch (error) {
                 logger.error(`Не удалось отправить сообщение для chat_id: ${chatId}: ${error.message}`);
             }
         }
         if (!isAuto && updated > 0) {
             try {
-                await bot.sendMessage(chatId, `📊 Обновлено ${updated} цен`, { parse_mode: 'HTML' });
-                logger.info(`Отправлено сообщение об обновлении ${updated} цен для chat_id: ${chatId}`);
+                await bot.sendMessage(chatId, `📊 Обновлено ${updated} записей (цены или количество)`, { parse_mode: 'HTML' });
+                logger.info(`Отправлено сообщение об обновлении ${updated} записей для chat_id: ${chatId}`);
             } catch (error) {
-                logger.error(`Не удалось отправить сообщение об обновлении цен для chat_id: ${chatId}: ${error.message}`);
+                logger.error(`Не удалось отправить сообщение об обновлении записей для chat_id: ${chatId}: ${error.message}`);
             }
         } else if (!isAuto) {
             try {
-                await bot.sendMessage(chatId, 'ℹ️ Изменений цен не обнаружено.', { parse_mode: 'HTML' });
-                logger.info(`Отправлено сообщение об отсутствии изменений цен для chat_id: ${chatId}`);
+                await bot.sendMessage(chatId, 'ℹ️ Изменений цен или количества не обнаружено.', { parse_mode: 'HTML' });
+                logger.info(`Отправлено сообщение об отсутствии изменений для chat_id: ${chatId}`);
             } catch (error) {
-                logger.error(`Не удалось отправить сообщение об отсутствии изменений цен для chat_id: ${chatId}: ${error.message}`);
+                logger.error(`Не удалось отправить сообщение об отсутствии изменений для chat_id: ${chatId}: ${error.message}`);
             }
         }
     } else if (!isAuto) {
         try {
-            await bot.sendMessage(chatId, 'ℹ️ Изменений цен не обнаружено.', { parse_mode: 'HTML' });
-            logger.info(`Отправлено сообщение об отсутствии изменений цен для chat_id: ${chatId}`);
+            await bot.sendMessage(chatId, 'ℹ️ Изменений цен или количества не обнаружено.', { parse_mode: 'HTML' });
+            logger.info(`Отправлено сообщение об отсутствии изменений для chat_id: ${chatId}`);
         } catch (error) {
-            logger.error(`Не удалось отправить сообщение об отсутствии изменений цен для chat_id: ${chatId}: ${error.message}`);
+            logger.error(`Не удалось отправить сообщение об отсутствии изменений для chat_id: ${chatId}: ${error.message}`);
         }
     }
 
@@ -336,7 +418,7 @@ async function checkPrices(bot, chatId, isAuto = false) {
             logger.error(`Не удалось показать главное меню для chat_id: ${chatId}: ${error.message}`);
         }
     }
-    logger.info(`Проверка цен завершена для chat_id: ${chatId}, обновлено: ${updated} цен`);
+    logger.info(`Проверка цен и количества завершена для chat_id: ${chatId}, обновлено: ${updated} записей`);
 }
 
 module.exports = { addProduct, removeProduct, listProducts, checkPrices };

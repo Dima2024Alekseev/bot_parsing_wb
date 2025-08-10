@@ -34,13 +34,19 @@ function validateUserData(userData) {
                 name: String(product.name || 'Не указано'),
                 brand: String(product.brand || 'Не указано'),
                 current_price: Number(product.current_price) || 0,
+                quantity: Number(product.quantity) || 0, // Добавляем поле quantity
                 rating: Number(product.rating) || 0,
                 imageUrl: String(product.imageUrl || ''),
                 added_date: String(product.added_date || new Date().toISOString()),
                 history: Array.isArray(product.history) ? product.history.map(entry => ({
                     date: String(entry.date || new Date().toISOString()),
-                    price: Number(entry.price) || 0
-                })) : [{ date: String(product.added_date || new Date().toISOString()), price: Number(product.current_price) || 0 }]
+                    price: Number(entry.price) || 0,
+                    quantity: Number(entry.quantity) || 0 // Добавляем quantity в историю
+                })) : [{ 
+                    date: String(product.added_date || new Date().toISOString()), 
+                    price: Number(product.current_price) || 0,
+                    quantity: Number(product.quantity) || 0 // Инициализация quantity в истории
+                }]
             };
         }
     }

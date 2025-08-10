@@ -42,7 +42,8 @@ async function getWbProductInfo(article) {
     let latestPrice = 0;
     let imageUrl = '';
     let host = hostCache.products?.[vol] || possibleHosts[0];
-    let reviewRating = 0; // Changed variable name to reflect reviewRating
+    let reviewRating = 0;
+    let deletedFlags = [];
 
     // Попытка запросов к серверам
     for (const attemptHost of [host, ...possibleHosts.filter(h => h !== host)]) {
@@ -60,13 +61,23 @@ async function getWbProductInfo(article) {
             }
         } catch (error) {
             logger.warn(`Ошибка card API: ${error.message}, URL: ${cardUrl}`);
+            if (error.response && error.response.status === 404) {
+                deletedFlags.push(true);
+            } else {
+                deletedFlags.push(false);
+            }
             continue;
         }
     }
 
     if (!cardData) {
-        logger.error(`Не удалось получить данные card API для ${article}`);
-        return { success: false, message: 'Не удалось получить данные из card API' };
+        if (deletedFlags.every(flag => flag === true)) {
+            logger.error(`Товар ${article} вероятно удалён: все card API вернули 404`);
+            return { success: false, message: 'Товар удалён или не существует' };
+        } else {
+            logger.error(`Не удалось получить данные card API для ${article}`);
+            return { success: false, message: 'Не удалось получить данные из card API' };
+        }
     }
 
     // Проверка изображения
@@ -99,11 +110,14 @@ async function getWbProductInfo(article) {
         const wbCardResponse = await axios.get(wbCardUrl, { headers, timeout: 15000 });
         if (wbCardResponse.status === 200) {
             const wbCardData = wbCardResponse.data;
+            let found = false;
             for (const product of wbCardData.products || []) {
                 if (String(product.id) === article) {
+                    found = true;
+                    let quantityWarning = null;
                     if (product.totalQuantity === 0) {
                         logger.warn(`Товар ${article} отсутствует на складе`);
-                        return { success: false, message: 'Товар отсутствует на складе' };
+                        quantityWarning = 'Товар отсутствует на складе!';
                     }
                     for (const size of product.sizes || []) {
                         latestPrice = (size.price?.product / 100) || latestPrice;
@@ -115,14 +129,33 @@ async function getWbProductInfo(article) {
                             imageUrl = '';
                         }
                     }
-                    // Извлекаем reviewRating из wb_card API
                     reviewRating = product.reviewRating || reviewRating;
+                    if (cardData.imt_name) {
+                        logger.info(`Успешно получены данные для ${article}, imageUrl: ${imageUrl}`);
+                        return {
+                            success: true,
+                            name: cardData.imt_name || 'Не указано',
+                            price: latestPrice,
+                            brand: cardData.selling?.brand_name || 'Не указано',
+                            rating: reviewRating,
+                            quantity: product.totalQuantity || 0, // Добавляем quantity
+                            quantityWarning, // Предупреждение, если quantity = 0
+                            priceWarning: latestPrice === 0 ? 'Цена недоступна' : null,
+                            imageUrl,
+                        };
+                    }
                     break;
                 }
+            }
+            if (!found) {
+                return { success: false, message: 'Товар удалён или не существует' };
             }
         }
     } catch (error) {
         logger.warn(`Ошибка wb_card API: ${error.message}, URL: ${wbCardUrl}`);
+        if (error.response && error.response.status === 404) {
+            return { success: false, message: 'Товар удалён или не существует' };
+        }
     }
 
     if (cardData.imt_name) {
@@ -132,7 +165,9 @@ async function getWbProductInfo(article) {
             name: cardData.imt_name || 'Не указано',
             price: latestPrice,
             brand: cardData.selling?.brand_name || 'Не указано',
-            rating: reviewRating, // Return reviewRating as rating
+            rating: reviewRating,
+            quantity: 0, // Fallback, если wb_card API не вернул данные
+            quantityWarning: 'Количество недоступно',
             priceWarning: latestPrice === 0 ? 'Цена недоступна' : null,
             imageUrl,
         };
