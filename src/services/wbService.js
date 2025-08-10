@@ -36,12 +36,13 @@ async function getWbProductInfo(article) {
     const nm = parseInt(article);
     const vol = Math.floor(nm / 100000);
     const part = Math.floor(nm / 1000);
-    const hostCache = await loadHostCache(HOST_CACHE_FILE); // Используем новую функцию
+    const hostCache = await loadHostCache(HOST_CACHE_FILE);
     const possibleHosts = Array.from({ length: 100 }, (_, i) => String(i + 1).padStart(2, '0'));
     let cardData = null;
     let latestPrice = 0;
     let imageUrl = '';
     let host = hostCache.products?.[vol] || possibleHosts[0];
+    let reviewRating = 0; // Changed variable name to reflect reviewRating
 
     // Попытка запросов к серверам
     for (const attemptHost of [host, ...possibleHosts.filter(h => h !== host)]) {
@@ -53,7 +54,7 @@ async function getWbProductInfo(article) {
                 cardData = cardResponse.data;
                 hostCache.products = hostCache.products || {};
                 hostCache.products[vol] = attemptHost;
-                await saveHostCache(HOST_CACHE_FILE, hostCache); // Используем новую функцию
+                await saveHostCache(HOST_CACHE_FILE, hostCache);
                 imageUrl = `https://basket-${attemptHost}.wbbasket.ru/vol${vol}/part${part}/${article}/images/big/1.webp`;
                 break;
             }
@@ -114,6 +115,8 @@ async function getWbProductInfo(article) {
                             imageUrl = '';
                         }
                     }
+                    // Извлекаем reviewRating из wb_card API
+                    reviewRating = product.reviewRating || reviewRating;
                     break;
                 }
             }
@@ -129,7 +132,7 @@ async function getWbProductInfo(article) {
             name: cardData.imt_name || 'Не указано',
             price: latestPrice,
             brand: cardData.selling?.brand_name || 'Не указано',
-            rating: cardData.rating || 0,
+            rating: reviewRating, // Return reviewRating as rating
             priceWarning: latestPrice === 0 ? 'Цена недоступна' : null,
             imageUrl,
         };
