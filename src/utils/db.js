@@ -3,7 +3,7 @@ const logger = require('./logger');
 const { MONGODB_URI } = require('../config/config');
 
 const DB_NAME = 'huligan-sport';
-const COLLECTION_NAME = 'user_wb';
+const COLLECTION_NAME = 'users';
 
 let client = null;
 let db = null;
