@@ -2,8 +2,8 @@ const { MongoClient } = require('mongodb');
 const logger = require('./logger');
 const { MONGODB_URI } = require('../config/config');
 
-const DB_NAME = 'huligan-sport';
-const COLLECTION_NAME = 'users';
+const DB_NAME = 'bot_wb';
+const COLLECTION_NAME = 'users_wb';
 
 let client = null;
 let db = null;
@@ -42,8 +42,8 @@ function validateUserData(userData) {
                     date: String(entry.date || new Date().toISOString()),
                     price: Number(entry.price) || 0,
                     quantity: Number(entry.quantity) || 0 // Добавляем quantity в историю
-                })) : [{ 
-                    date: String(product.added_date || new Date().toISOString()), 
+                })) : [{
+                    date: String(product.added_date || new Date().toISOString()),
                     price: Number(product.current_price) || 0,
                     quantity: Number(product.quantity) || 0 // Инициализация quantity в истории
                 }]
