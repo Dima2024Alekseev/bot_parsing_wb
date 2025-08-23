@@ -7,8 +7,8 @@ const config = {
     MONGODB_URI: process.env.MONGODB_URI
 };
 
-if (!config.TELEGRAM_BOT_TOKEN || !config.CHAT_ID) {
-    console.error('TELEGRAM_BOT_TOKEN or CHAT_ID is not defined in .env file');
+if (!config.TELEGRAM_BOT_TOKEN) {
+    console.error('TELEGRAM_BOT_TOKEN .env file');
     process.exit(1);
 }
 
